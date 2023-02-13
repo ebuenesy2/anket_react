@@ -1,0 +1,82 @@
+.widgetCardChartMini{
+    /* width: 320px; */
+    width: 100%;
+    height: 215px;
+    padding: 20px;
+    border-radius: 15px;
+    background-color: #F1F1F1;
+}
+
+.widgetCardChartMiniContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+    /* background-color: blue; */
+}
+
+.widgetCardChartMiniContainerTop {
+    display: flex;
+    flex-direction: column;
+}
+
+.widgetCardChartMiniContainerTopTitle {
+    font-size: 14px;
+    font-weight: 400;
+    color: #344563;
+    line-height: 1.6;
+    letter-spacing: 0.01071em;
+}
+
+.widgetCardChartMiniContainerTopValue {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.widgetCardChartMiniContainerTopCount {
+    font-size: 20px;
+    font-weight: 900;
+    color: #344563;
+    line-height: 1.6;
+    letter-spacing: 0.01071em;
+}
+
+.widgetCardDataTimeLineDetailBoxStatus {
+    margin-top: auto;
+    margin-bottom: auto;
+    color: darkgreen;
+    transform: rotate(0deg);
+}
+
+.widgetCardDataTimeLineDetailBoxStatus.negative {
+    color: red;
+    transform: rotate(180deg);
+}
+
+.widgetCardChartMiniContainerTopDescription {
+    font-size: 20px;
+    font-weight: 900;
+    color: red;
+    line-height: 1.6;
+    letter-spacing: 0.01071em;
+    margin-top: auto;
+    margin-bottom: auto;     
+}
+.widgetCardChartMiniContainerTopTimeDescription {
+    font-size: 14px;
+    font-weight: 900;
+    color: #344563;
+    line-height: 1.6;
+    letter-spacing: 0.01071em;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.widgetCardChartMiniContainerBottom {
+   /*background-color: blue; */
+   width: 100%;
+   height: 125px;
+   margin-top: 5px;    
+}

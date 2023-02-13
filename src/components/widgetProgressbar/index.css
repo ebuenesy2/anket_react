@@ -1,0 +1,9 @@
+.ProgressBarValueBackColor{
+    /* width: 320px; */
+    background-color: #E4E6EA;
+    border-radius: 50px 50px 50px 50px;
+    height: 8px;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+}

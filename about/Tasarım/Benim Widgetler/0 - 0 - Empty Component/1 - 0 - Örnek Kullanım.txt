@@ -1,0 +1,19 @@
+ Import
+--------------------
+
+/* ProgressBar */
+import Progressbar from "../../../components/Progressbar";
+
+************************************************************************
+
+Component Kullanımı - Veri Gönderme
+----------------------------------------
+ <div style={{ width:"120px", height:"8px", marginTop:"15px" }} >
+       <Progressbar
+          value={10}
+          maxValue={20}
+       />
+ </div>
+
+************************************************************************
+

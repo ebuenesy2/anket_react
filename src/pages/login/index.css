@@ -1,0 +1,81 @@
+.login {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center; /* Yatay ortalama */
+    align-items: center; /* Dikey ortalama - Yükselik verilmesi lazım */
+    min-height: 100vh; 
+    font-family: 'Jost', sans-serif;
+    background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);
+}
+
+.main {
+    width: 450px;
+    height: 500px;
+    overflow: hidden;
+    background: url("https://doc-08-2c-docs.googleusercontent.com/docs/securesc/68c90smiglihng9534mvqmq1946dmis5/fo0picsp1nhiucmc0l25s29respgpr4j/1631524275000/03522360960922298374/03522360960922298374/1Sx0jhdpEpnNIydS4rnN4kHSJtU1EyWka?e=view&authuser=0&nonce=gcrocepgbb17m&user=03522360960922298374&hash=tfhgbs86ka6divo3llbvp93mg4csvb38") no-repeat center/ cover;
+    border-radius: 10px;
+    box-shadow: 5px 20px 50px #000; /* yatay dikey opacity renk */
+}
+
+.loginPanel .title , .signupPanel .title {
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    margin: 60px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 2.3em;
+    transition: .5s ease-in-out;
+    text-decoration: none; /* Yazı Alt ve Üst Çizgileri Kaldırıyor */   
+}
+
+.loginPanel .title.pasif{
+    color: #573b8a;
+    transform: scale(.6);
+}
+
+.loginPanel {
+    position: relative;
+    width: 450px;
+    height: 500px;
+}
+
+
+.loginPanel .title:hover { color: #fff; }
+
+
+.loginControlPanel {
+    gap: 13px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: .5s ease-in-out;
+    opacity: 1;
+    gap:24px;
+}
+
+.loginControlPanel.active { opacity: 0;}
+
+.loginButton { background-color: rebeccapurple; }
+
+
+
+.signupPanel {
+    height: 460px;
+    background-color: #eee;
+    border-radius: 60% / 10%;
+    transform: translateY(-180px); /* Dikey yön */
+	transition: .8s ease-in-out;  /* Hareketlik */
+}
+
+.signupPanel.active {  transform: translateY(-500px); }
+
+.signupPanel .title {
+    color: #302b63;
+    font-size: 1.3em;
+}
+
+.signupPanel .title.active {
+    font-size: 2.3em;
+}

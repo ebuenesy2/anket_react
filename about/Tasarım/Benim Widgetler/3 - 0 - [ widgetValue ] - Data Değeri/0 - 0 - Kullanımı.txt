@@ -1,0 +1,24 @@
+ Import
+--------------------
+import WidgetValue from "../../components/widgetValue";
+
+************************************************************************
+
+Component Kullanımı - Veri Gönderme
+----------------------------------------
+
+                          <div style={{ width:"200px", display:"flex", gap:"10px" }}>
+                              <WidgetValue
+                                   title={"Mutfak Odası"}
+                                   type={"Sıcaklık"}
+                                   onlineStatus={true}
+                                   valueColor={"red"}
+                                   value={"21"}
+                                   valueKey={"°C"}
+                              />
+                          </div>
+************************************************************************
+
+
+Not
+----------

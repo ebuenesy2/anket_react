@@ -1,0 +1,37 @@
+ Import
+--------------------
+import WidgetControl from "../../components/widgetControl";
+
+************************************************************************
+
+ Icon
+--------------------
+import WifiIcon from '@material-ui/icons/Wifi';
+
+************************************************************************
+
+ State
+--------------------
+const [ widgetControlStatus , setWidgetControlStatus] = useState(false);
+
+**********************************************************************
+
+                          <p> widgetControlStatus: {widgetControlStatus == true ? "True": "False"} </p>
+                          <div style={{ width:"450px", display:"flex", gap:"10px" }}>
+                            <WidgetControl
+                               title={"Wifi"}
+                               icon={<WifiIcon style={{ fontSize:"70px",opacity:"0.3" }}/>}
+                               status={widgetControlStatus}
+                               setStatus={setWidgetControlStatus}
+                               onlineStatus={false}
+                               onClick={()=> {alert("tiklama wifi")}}
+                            />
+                             <WidgetControl
+                               title={"Lamba"}
+                               icon={<EmojiObjectsIcon style={{ fontSize:"70px",opacity:"0.3" }}/>}
+                               status={widgetControlStatus}
+                               setStatus={setWidgetControlStatus}
+                               onlineStatus={true}
+                               onClick={()=> {alert("tiklama lamba")}}
+                            />
+                          </div>

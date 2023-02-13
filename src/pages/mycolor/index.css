@@ -1,0 +1,19 @@
+.myColor { display: flex;}
+.myColor .myColorHome { flex: 1; }
+
+.myColor .myColorContainer {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    border-radius: 15px;
+    padding: 15px;
+}
+
+.myColor .myColorColorBox {
+    width: 1400px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    gap: 10px;
+}

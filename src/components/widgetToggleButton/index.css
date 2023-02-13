@@ -1,0 +1,82 @@
+:root {
+   --width: 0px;
+   --height: 0px;
+   --left: 0px;
+}
+
+.widgetToggleButton{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    width: max-content;
+    max-width: 100%;
+    background-color: #F1F1F1;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    line-height: 1.33333;
+    border-radius: 3px;
+    padding: 5px;
+}
+
+.widgetToggleButtonSelect {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    gap: 8px;
+}
+
+.widgetToggleButtonSelect::before {
+    content: "";
+    display: block;
+    position: absolute;
+    left: var(--left);
+    width: var(--width);
+    height: var(--height);
+    transition: left 500ms ease;
+    background-color: var(--ds-background-neutral-subtle-pressed, #344563) !important;
+    border-radius: 3px !important;
+    z-index: 1;
+}
+
+.widgetToggleButtonDescription {
+    /* background-color: rebeccapurple; */
+    margin-top: auto;
+    margin-bottom: auto;
+    cursor: pointer;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    z-index: 2;
+}
+
+.widgetToggleButtonDescription.active {
+    cursor: default;
+    border-radius: 3px !important;
+    background-color: var(--ds-background-neutral-subtle-pressed, #344563) !important; 
+    color: #fff;
+    z-index: 2;
+}
+
+.widgetToggleButtonDescription.passive:hover {
+    border-radius: 3px;
+    background-color: var(--ds-background-neutral-subtle-hovered, #344563);
+    color: #fff;
+    z-index: 2;
+}
+
+.widgetToggleButtonArrow {
+  margin-top: auto;
+  margin-bottom: auto;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.widgetToggleButtonArrow.passive {
+    cursor: default;
+    visibility: hidden;
+}

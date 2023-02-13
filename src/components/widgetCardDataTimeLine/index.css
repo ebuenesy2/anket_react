@@ -1,0 +1,136 @@
+.widgetCardDataTimeLine{
+    width: 100%;
+    height: 400px;
+    padding: 20px;
+    background-color:#F1F1F1;
+    border-radius: 15px;
+    overflow-y: auto;
+}
+
+
+.widgetCardDataTimeLineContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap:30px;
+    width: 100%;
+    height: 100%;   
+    /* background-color: blue; */
+}
+
+.widgetCardDataTimeLineBox {
+    font-size: 1rem;
+    font-weight: 300;
+    line-height: 1.6;
+    letter-spacing: 0.01071em;
+    color: rgb(123, 128, 154);
+}
+
+.widgetCardDataTimeLineDetailTitle {
+    font-size: 18px;
+    font-weight: 700;
+    color:#344563;
+    line-height: 1.625;
+    letter-spacing: 0.0075em;
+}
+
+.widgetCardDataTimeLineDetailBox {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
+
+.widgetCardDataTimeLineDetailBoxStatus {
+    color: darkgreen;
+    transform: rotate(0deg);
+}
+
+.widgetCardDataTimeLineDetailBoxStatus.negative {
+    color: red;
+    transform: rotate(180deg);
+}
+
+
+.widgetCardDataTimeLineDetailBoxDescription {
+    margin-top: auto;
+    margin-bottom: auto;
+    font-size: 14px;
+    font-weight: 400;
+    color: darkgreen;
+    line-height: 1.5;
+    letter-spacing: 0.02857em;
+}
+
+.widgetCardDataTimeLineDetailBoxDescription.negative {  color: red; }
+
+.widgetCardDataTimeLineDetailBoxContent {
+    margin-top: auto;
+    margin-bottom: auto;
+    font-size: 14px;
+    font-weight: 400;
+    color: #344563;
+    line-height: 1.5;
+    letter-spacing: 0.02857em;
+}
+
+.widgetCardDataTimeLineBottom {
+    height: 80%;
+    display: flex;
+    flex-direction: column;    
+    /* background-color: blue; */
+    border-left: 2px solid #2222;
+    padding-left: 25px;
+    margin-left: 15px;
+    margin-top: 20px;
+    gap:15px;
+}
+
+.widgetCardDataTimeLineBottomBox {
+    width: 100%;
+    display: flex;
+    gap:30px;
+}
+
+.widgetCardDataTimeLineBottomIconBox {
+    display: grid;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    margin-top: 1px;
+    margin-bottom: auto;
+    margin-left: -42px;
+    font-size: 0.875rem;
+    background: linear-gradient(195deg, rgb(66, 66, 74), rgb(25, 25, 25));
+    color: rgb(255, 255, 255);
+    border-radius: 50%;  
+}
+
+.widgetCardDataTimeLineBottomInfoBox {
+    margin-top: auto;
+    margin-bottom: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.widgetCardDataTimeLineBottomInfoBox:nth-child(n) {
+    position: relative;
+}
+
+.widgetCardDataTimeLineBottomInfoBoxTitle {
+    font-size: 16px;
+    font-weight: 700;
+    color: #344563;
+    line-height: 1.5;
+    letter-spacing: 0.02857em;
+}
+
+.widgetCardDataTimeLineBottomInfoBoxDescription {
+    font-size: 12px;
+    font-weight: 400;
+    color: #344563;
+    line-height: 1.25;
+    letter-spacing: 0.03333em;
+}

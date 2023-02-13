@@ -1,0 +1,15 @@
+ import
+-----------
+import EmptyComponent from "../../../components/EmptyComponent";
+
+****************************
+
+Kullanımı
+---------
+  <EmptyComponent />
+
+****************************
+
+Kullanımı - Veri Gönderme
+--------------------------
+  <EmptyComponent title="Title Gelen" value="100" />

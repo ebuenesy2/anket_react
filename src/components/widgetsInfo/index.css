@@ -1,0 +1,107 @@
+.widgetInfo{
+    width: 320px;
+    height: 210px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 15px;
+    background-color: #F1F1F1;
+}
+
+.widgetInfo .top {
+    display: flex;
+    left: 5px;
+    font-size: 12px;
+    font-weight: 900;
+    justify-content: space-between;
+}
+
+.widgetInfo .top .icon {
+   cursor: pointer;
+   color: blue;
+}
+
+.widgetInfo .topUser {
+    display: flex;
+    left: 5px;
+    font-size: 12px;
+    font-weight: 900;
+    gap: 6px;
+    margin-bottom: -30px;
+}
+
+.widgetInfo .topUser .userId { font-size: 12px; }
+
+.widgetInfo .bottom {
+    margin-left: 0px;
+    margin-top: -10px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
+.widgetInfo .bottom .bottomLeft {
+    width: 80px;
+    height: 100px;
+    text-align: center;
+}
+
+.widgetInfo .bottom .bottomLeft .userAvatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 1px solid;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    cursor: pointer;
+}
+
+.widgetInfo .bottom .bottomLeft .userStatus {
+    width: 11px;
+    height: 11px;
+    color: green;
+}
+
+.widgetInfo .bottom .bottomRigth {
+    width: 170px;
+    height: 100px;
+    /* background-color:blueviolet; */
+    margin-bottom: 20px;
+}
+
+.widgetInfo .bottom .bottomRigth .username {
+    font-size: 15px;
+    font-family: sans-serif;
+    font-weight: bold;
+    text-decoration: auto;
+    color: black;
+    cursor: pointer;
+}
+
+.widgetInfo .bottom .bottomRigth .nameSurname {
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.widgetInfo .bottom .bottomRigth .registerName {
+    font-size: 12px;
+    font-weight: bold;
+    display: flex;
+    width: 194px;
+    gap: 5px;
+}
+
+.widgetInfo .bottom .bottomRigth .registerValue {
+    font-size: 10px;
+    font-weight: 500;
+    margin-top: auto;
+}
+
+.widgetInfo .bottom .bottomRigth .onlineTime {
+    font-size: 10px;
+    font-weight: 900;
+    display: flex;
+    width: 194px;
+    gap: 1px;
+    width: 220px
+}

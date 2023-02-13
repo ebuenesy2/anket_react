@@ -1,0 +1,27 @@
+ Import
+--------------------
+import WidgetInfo from '../../components/widgetsInfo';
+
+************************************************************************
+
+Component Kullanımı - Veri Gönderme
+----------------------------------------
+                         
+                         <WidgetInfo userId={"15"}
+                                     userAvatar={"./assets/img/1.jpg"}
+                                     userStatus={true}
+                                     username={"username1"}
+                                     nameSurname={"Olga Sukhorukova"}
+                                     country={"Turkiye"}
+                                     city={"Ankara"}
+                                     dateofBirth={"17-03-1998"}
+                                     created_at={"2022-06-19T13:56:51+03:00"}
+                                     userActive={true}
+                                     onlineTime={"22gun/8ay/2yıl 13sa:39dak:44sn:900ms"}
+                         />
+                               
+************************************************************************
+
+
+Not
+----------

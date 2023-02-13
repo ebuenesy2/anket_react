@@ -1,0 +1,26 @@
+.widgetAddCard{
+    /* width: 320px; */
+    width: 100%;
+    height: 210px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    -webkit-box-shadow: 2px 4px 10px 1px rgb(0, 0, 0, 0.47);
+    box-shadow: 2px 4px 10px 1px rgb(0, 0, 0, 0.47);
+    border-radius: 15px;  
+    justify-content: center;
+}
+
+.widgetAddCard .widgetAddCardContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;    
+}
+
+.widgetAddCard .widgetAddCardContainer .widgetText {
+    color: #8392ab;
+    font-size: 20px;
+    font-weight: 600;
+}

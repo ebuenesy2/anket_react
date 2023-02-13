@@ -1,0 +1,19 @@
+
+                          <div style={{ width:"450px", display:"flex", gap:"10px" }}>
+                              <WidgetValue
+                                   title={"Mutfak Odası"}
+                                   type={"Sıcaklık"}
+                                   onlineStatus={true}
+                                   valueColor={"red"}
+                                   value={"21"}
+                                   valueKey={"°C"}
+                              />
+
+                              <WidgetValue
+                                   title={"Yemek Odası"}
+                                   type={"Nem"}
+                                   onlineStatus={true}
+                                   valueColor={"blue"}
+                                   value={"45"}
+                                   valueKey={"%"}
+                              />

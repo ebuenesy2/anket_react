@@ -1,0 +1,89 @@
+.widgetDataIstatistics{
+    width: 300px;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background-color:#F1F1F1;
+    border-radius: 15px;
+    height: 150px;
+}
+
+.widgetDataIstatistics .left, .right {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+
+
+.widgetDataIstatistics .left .title {
+    font-size: 14px;
+    font-weight: bold;
+    color: rgb(160, 160, 160);
+}
+
+.widgetDataIstatistics .left .counter {
+    font-size: 28px;
+    font-weight: 300;
+}
+
+.widgetDataIstatistics .left .onlinePanel {
+    display: flex;
+    gap: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    color: rgb(160, 160, 160);
+}
+
+.widgetDataIstatistics .left .link {
+    width: max-content;
+    font-size: 12px;
+    text-decoration: auto;
+    cursor: pointer;
+}
+
+.widgetDataIstatistics .right  {
+   width: 90px;
+}
+
+.widgetDataIstatisticsStatusArrow {
+    display: flex;
+    gap: 7px;
+}
+
+
+.widgetDataIstatisticsStatusStatus {
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+    color: darkgreen;
+    transform: rotate(0deg);
+}
+
+.widgetDataIstatisticsStatusStatus.negative {
+    color: red;
+    transform: rotate(180deg);
+ }
+
+.widgetDataIstatisticsStatusDescription {
+    margin-top: auto;
+    margin-bottom: auto;
+    font-size: 14px;
+    font-weight: 400;
+    color: darkgreen;
+    line-height: 1.5;
+    letter-spacing: 0.02857em;
+}
+
+.widgetDataIstatisticsStatusDescription.negative {  color: red; }
+
+
+.widgetDataIstatistics .right .iconBox {
+    padding: 3px;
+    background-color: rgba(128 ,0, 128, 0.541);
+    border-radius: 10px;
+    align-items: flex-end;
+    width: 2.5rem;
+    height: 2.5rem;
+}
+

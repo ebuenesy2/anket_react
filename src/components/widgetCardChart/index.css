@@ -1,0 +1,95 @@
+.widgetCardChart{
+    /* width: 320px; */
+    width: 100%;
+    height: 360px;
+    padding: 30px;
+    display: flex;
+    border-radius: 15px;
+    background-color: #F1F1F1;
+}
+
+.widgetCardChartContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+    /* background-color: aqua; */
+}
+
+.widgetCardChartTop {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.widgetCardChartTopTitle {
+    display: flex;
+    flex-direction: row;
+    gap: 9px;
+}
+
+.widgetCardChartTopIconBox {
+    width: 48px;
+    height: 48px;
+    background-color: #0052CC;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.widgetCardChartTopTitleBox {
+    display: flex;
+    flex-direction: column;
+    height: 8px;
+}
+
+.widgetCardChartTopLeftTitle {
+    font-size: 14px;
+    font-weight: 400;
+    color:#344563;
+    line-height: 1.6;
+    letter-spacing: 0.01071em;
+}
+
+.widgetCardChartTopLeftContent {
+    font-size: 14px;
+    font-weight: 400;
+    color: #344563;
+    line-height: 1.375;
+    margin-top: -8px;
+}
+
+.widgetCardChartTopBox {
+    width: 152.078px;
+    display: flex;
+    flex-direction: column;
+}
+
+.WidgetProgressBarValue {
+    margin: auto;
+    font-size: 14px;
+    font-weight: 400;
+    color: #344563;
+    line-height: 1.375;
+    letter-spacing: 0em;
+}
+
+.ProgressBarValueBackColor {
+    background-color: #E4E6EA;
+    border-radius: 50px 50px 50px 50px;
+    height: 8px;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+}
+
+.widgetCardChartBottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

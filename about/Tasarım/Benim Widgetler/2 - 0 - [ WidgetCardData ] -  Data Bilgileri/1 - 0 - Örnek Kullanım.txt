@@ -1,0 +1,32 @@
+ Import
+--------------------
+import WidgetCardData from '../../components/widgetCardData'; 
+
+************************************************************************
+
+ Icon
+--------------------
+import BatteryFullIcon from '@material-ui/icons/BatteryFull'; //! icon
+import WbSunnyIcon from '@material-ui/icons/WbSunny';
+
+************************************************************************
+
+Component Kullanımı - Veri Gönderme
+----------------------------------------
+
+                          <div style={{ width:"450px", display:"flex", gap:"10px" }}>
+                                 <WidgetCardData
+                                    icon={<BatteryFullIcon style={{ fontSize:"50px"}} />}
+                                    title={"Battery Health"}
+                                    value={"99 %"}
+                                    onlineStatus={true}
+                                 />
+                                 <WidgetCardData
+                                    icon={<WbSunnyIcon style={{ fontSize:"50px"}} />}
+                                    title={"Aydınlık Seviyesi"}
+                                    value={"99 %"}
+                                    onlineStatus={true}
+                                 />
+                          </div>
+************************************************************************
+
