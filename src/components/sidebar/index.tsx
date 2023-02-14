@@ -15,7 +15,7 @@ function Index() {
                 <span className="logo"> Anket </span>
              </div>
              <hr />
-             <div className="center">
+             <div className="center" >
                 <ul>
                    <p className="title">  Anasayfa</p>
                    <li>

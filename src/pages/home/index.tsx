@@ -3,8 +3,6 @@ import Sidebar from '../../components/sidebar';
 import Navbar from '../../components/navbar';
 
 import WidgetDataIstatistics from "../../components/widgetDataIstatistics";
-
-import Featured from '../../components/featured';
 import Chart from '../../components/charts';
 
 //! icon
@@ -13,10 +11,19 @@ import ImportContactsIcon from '@material-ui/icons/ImportContacts';
 import AlarmIcon from '@material-ui/icons/Alarm';
 import PersonOutlineOutlinedIcon from '@material-ui/icons/PersonOutlineOutlined';
 import BlurCircularIcon from '@material-ui/icons/BlurCircular';
+import { useEffect } from "react";
 
 
 
 function Index() {
+  
+  
+  useEffect(() => { 
+    
+    const userLoginStatus = localStorage.getItem("userLogin") || "false";
+    if (userLoginStatus != "true") { window.location.href = "/login"; }
+   
+   }, []);
     
   return (
         <div className='home'>
@@ -244,7 +251,7 @@ function Index() {
                         
                   </div>
                   <div className="Charts"> 
-                        <Featured />
+                      
                         <Chart />
                   </div>
 

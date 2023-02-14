@@ -80,8 +80,12 @@ function Index() {
           showConfirmButton: false,
           timer: 2000
         });
+        
+        localStorage.setItem("userLogin", "true");
+        localStorage.setItem("userToken", response.data.userToken );
+        localStorage.setItem("userId", response.data.userId );
 
-         //! window.location.href ="/survey"; //! Sayfa Yönledirme
+        window.location.href ="/"; //! Sayfa Yönledirme
       }
       
       else if(response.data.status ==0) {

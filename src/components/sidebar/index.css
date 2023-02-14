@@ -27,7 +27,7 @@ hr {
 }
 
 .sidebar .center {
-   padding-left: auto;
+   width: 226px;
    cursor: pointer;
 }
 
