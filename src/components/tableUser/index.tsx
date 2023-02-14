@@ -68,7 +68,7 @@ function getDiv(params:any) {
 
 //! Actions Kullanma
 function getActions(params:any) {
-  return <div style={{ display:"flex", gap:"5px" }}>
+  return <div style={{ display:"flex", gap:"5px",cursor:"pointer" }}>
      <div style={{ color:"red" }} onClick={()=> { deleteUser( params.row.id) }} >   <DeleteIcon />  </div>
      <div style={{ color:"blue" }} onClick={()=> { vieweUser( params.row.id) }} >   <VisibilityIcon />  </div>
      <div style={{ color:"black" }} onClick={()=> { editUser( params.row.id) }} >   <EditIcon />  </div>

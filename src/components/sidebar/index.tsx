@@ -58,7 +58,7 @@ function Index() {
                      </a>
                    </li>
 
-                   <p className="title">  Education </p>
+                   <p className="title">  Survey </p>
                    <li>
                      <a href="/question">
                         <HelpOutlineIcon className="icon" />
