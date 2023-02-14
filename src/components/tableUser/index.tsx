@@ -167,7 +167,5 @@ export const Index =(props: any) => {
 }
 
 export default Index;
-function useStyles() {
-  throw new Error("Function not implemented.");
-}
+
 

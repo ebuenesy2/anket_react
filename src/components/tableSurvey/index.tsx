@@ -7,7 +7,7 @@ import VisibilityIcon from '@material-ui/icons/Visibility';
 import EditIcon from '@material-ui/icons/Edit';
 import ClearIcon from '@material-ui/icons/Clear';
 import PanToolIcon from '@material-ui/icons/PanTool';
-
+import Swal from 'sweetalert2';
 
 //! Date
 import Moment from 'moment'; //! Date
@@ -15,7 +15,6 @@ import { Button, Dialog, DialogContent, DialogTitle } from "@material-ui/core";
 import { useState } from "react";
 import axios from "axios";
 Moment.locale(Moment.locale()); // Lokasyona göre Zaman alıyor
-
 
 
 
@@ -136,47 +135,68 @@ export const Index =(props: any) => {
      else if (answer1 == "" ) { alert("En az bir Cevap Yazını") }
      else {
 
-    
-     
+        const answers = {
+            answer1:answer1 == '' ? null : answer1,
+            answer2:answer2 == '' ? null : answer2,
+            answer3:answer3 == '' ? null : answer3,
+            answer4:answer4 == '' ? null : answer4
+        }
 
-     const answers = {
-        answer1:answer1 == '' ? null : answer1,
-        answer2:answer2 == '' ? null : answer2,
-        answer3:answer3 == '' ? null : answer3,
-        answer4:answer4 == '' ? null : answer4
-     }
-
-     const apiUrl_table=process.env.REACT_APP_API_URL+"/api/survey/add";
-     console.log("apiUrl_table:",apiUrl_table);
-     
-      //Eklenen Veriler
-      const NewData={
-        serverId: "0",
-        serverToken:"yildirimdev",
-        question:questionState,
-        answers: answers,
-        created_byToken:"created_byToken"
-      }
-
-     
-
-      axios.post(apiUrl_table,NewData)
-      .then(response => {
-
-        //! State
-        setSuccess(1); //! Başarılı
-
-        alert("Veri Eklendi");
+        const apiUrl_table=process.env.REACT_APP_API_URL+"/api/survey/add";
+        console.log("apiUrl_table:",apiUrl_table);
         
-        //! console
-        console.log("Data:",response.data);
+          //Eklenen Veriler
+          const NewData={
+            serverId: "0",
+            serverToken:"yildirimdev",
+            question:questionState,
+            answers: answers,
+            created_byToken:"created_byToken"
+          }
+     
 
-        props.setModalOpen(false);
+          axios.post(apiUrl_table,NewData)
+            .then(response => {
+            
+            //! State
+            setSuccess(response.data.status); //! Durum
+            
+            //! console
+            console.log("Data:", response.data);
+              
+              
+              if (response.data.status == 1) {
+              
+                Swal.fire({
+                  position: 'center',
+                  icon: 'success',
+                  title: 'İşleminiz Başarılı',
+                  showConfirmButton: false,
+                  timer: 2000
+                });
+                
+                props.setModalOpen(false);
+                 props.apiGet();
 
-        props.apiGet();
-          
-      })
-      .catch(error => {  console.log("Api Error:",error.message); });
+                //! window.location.href ="/survey"; //! Sayfa Yönledirme
+              }
+            
+              else if (response.data.status == 0) {
+              
+                Swal.fire({
+                  position: 'center',
+                  icon: 'error',
+                  title: 'İşleminiz Hatalı',
+                  showConfirmButton: false,
+                  timer: 2000
+                });
+                
+              
+              }
+            
+              
+          })
+          .catch(error => {  console.log("Api Error:",error.message); });
 
     }
 
@@ -275,7 +295,4 @@ export const Index =(props: any) => {
 }
 
 export default Index;
-function useStyles() {
-  throw new Error("Function not implemented.");
-}
 

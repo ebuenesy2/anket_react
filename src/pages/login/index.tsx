@@ -32,15 +32,20 @@ function Index() {
   const handleValuePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => { setValuePassword(event.target.value); }; //! Password
   const handleClickShowPassword = () => { setShowValuePassword(!valueShowPassword); }; //! Password Show
 
+    //! Api State
+  const [LoginSuccess, setLoginSuccess] = useState(null);
+  const [tableLoginData, setTableLoginData] = useState<any[]>([])
+  
   //! SingUp
   const [valueNameSingUp, setValueNameSingUp] = React.useState(''); //! Name
   const [valueSurNameSingUp, setValueSurNameSingUp] = React.useState(''); //! SurName
-  const [valueUsernameSingUp, setValueUsernameSingUp] = React.useState(''); //! SurName
+  const [valueEmailSingUp, setValueEmailSingUp] = React.useState(''); //! Email
+  const [valueGsmSingUp, setValueGsmSingUp] = React.useState(''); //! Gsm
+  
+  const [valuePassSingUp, setValuePassSingUp] = React.useState(''); //! Pass
+  const [valueRePassSingUp, setValueRePassSingUp] = React.useState(''); //! Pass
 
 
-  //! Api State
-  const [LoginSuccess, setLoginSuccess] = useState(null);
-  const [tableLoginData, setTableLoginData] = useState<any[]>([])
 
   const login = () => {
       
@@ -60,12 +65,11 @@ function Index() {
     .then(response => {
 
       //! State
-      
       setTableLoginData(response.data.DB);
       console.log("Data:",response.data);
      
       
-      setLoginSuccess(response.data.status); //! Başarılı
+      setLoginSuccess(response.data.status); //! Durum
 
       if(response.data.status ==1) {
         
@@ -103,25 +107,77 @@ function Index() {
 
   const signup = () => {
 
-    alert("kayıt ol");
-                
-    const apiUrl_table=process.env.REACT_APP_API_URL+"/api/user/add";
-    console.log("apiUrl_table:",apiUrl_table);
-
-     //Eklenen Veriler
-     const NewData={
-      serverId: 0,
-      serverToken:"yildirimdev",
-      userRoleToken:"token3",
-      userTypeToken:"token1",
-
-      name:  valueNameSingUp == "" ? null : valueNameSingUp,
-      surname:  valueSurNameSingUp == "" ? null : valueSurNameSingUp,
-      username:  valueUsernameSingUp == "" ? null : valueUsernameSingUp
+  if (valueRePassSingUp != valuePassSingUp) {
+      
+          Swal.fire({
+          position: 'center',
+          icon: 'error',
+          title: 'Sifreler Farklıdır',
+          showConfirmButton: false,
+          timer: 2000
+        });
       
     }
+    else {
+      
+      const apiUrl_table=process.env.REACT_APP_API_URL+"/api/user/add";
+      console.log("apiUrl_table:", apiUrl_table);
+   
+    
+      //Eklenen Veriler
+      const NewData={
+        serverId: 0,
+        serverToken:"yildirimdev",
+        userRoleToken:"token3",
+        userTypeToken:"token1",
 
-    console.log("NewData:",NewData);
+        name:  valueNameSingUp == "" ? null : valueNameSingUp,
+        surname:  valueSurNameSingUp == "" ? null : valueSurNameSingUp,
+        email:  valueEmailSingUp == "" ? null : valueEmailSingUp,
+        gsm:  valueGsmSingUp == "" ? null : valueGsmSingUp,
+        password:  valuePassSingUp == "" ? null : valuePassSingUp
+      }
+      
+    console.log("NewData:", NewData);
+    
+    
+    axios.post(apiUrl_table, NewData)
+      .then(response => {
+
+        //! State
+        console.log("Data:", response.data);
+
+        if (response.data.status == 1) {
+        
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'İşleminiz Başarılı',
+            showConfirmButton: false,
+            timer: 2000
+          });
+
+           window.location.reload();
+        }
+      
+        else if (response.data.status == 0) {
+        
+          Swal.fire({
+            position: 'center',
+            icon: 'error',
+            title: 'İşleminiz Hatalı',
+            showConfirmButton: false,
+            timer: 2000
+          });
+        }
+      
+        
+      })
+      .catch(error => { console.log("Api Error:", error.message); });
+      
+    
+    }
+    
 
   } //! signup
     
@@ -216,7 +272,7 @@ function Index() {
                         <TextField
                             fullWidth
                             id="filled-multiline-flexible"
-                            label="Soyaddınız"
+                            label="Soyadınız"
                             type={'text'}
                             maxRows={3}
                             value={valueSurNameSingUp}
@@ -232,11 +288,11 @@ function Index() {
                         <TextField
                             fullWidth
                             id="filled-multiline-flexible"
-                            label="UserName"
+                            label="Email"
                             type={'text'}
                             maxRows={3}
-                            value={valueUsernameSingUp}
-                            onChange={(e) => { setValueNameSingUp(e.target.value) } }
+                            value={valueEmailSingUp}
+                            onChange={(e) => { setValueEmailSingUp(e.target.value) } }
                             variant="filled"
                             required
                           />
@@ -246,11 +302,11 @@ function Index() {
                         <TextField
                             fullWidth
                             id="filled-multiline-flexible"
-                            label="Soyaddınız"
+                            label="Gsm"
                             type={'text'}
                             maxRows={3}
-                            value={valueSurNameSingUp}
-                            onChange={(e) => { setValueSurNameSingUp(e.target.value) } }
+                            value={valueGsmSingUp}
+                            onChange={(e) => { setValueGsmSingUp(e.target.value) } }
                             variant="filled"
                             required
                           />
@@ -258,29 +314,32 @@ function Index() {
                     </div>
 
                     <div style={{ display:"flex", width:"430px", justifyContent:"space-between", marginTop:"-10px" }} >
-                      <Paper style={{ width:"200px", borderRadius:"18px", outline:"auto" }} >
-                        <TextField
-                            fullWidth
-                            id="filled-multiline-flexible"
-                            label="Username"
-                            type={'text'}
-                            maxRows={3}
-                            value={valueUserName}
-                            onChange={handleValueUserNameChange}
-                            variant="filled"
-                            required
-                          />
-                      </Paper>
-
-                      <Paper style={{ width:"200px", borderRadius:"18px", outline:"auto", display:"flex" }} >
+                       <Paper style={{ width:"200px", borderRadius:"18px", outline:"auto", display:"flex" }} >
                         <TextField
                           fullWidth
                           id="filled-multiline-flexible"
                           label="Password"
                           type={valueShowPassword ? 'text' : 'password'}
                           maxRows={3}
-                          value={valuePassword}
-                          onChange={handleValuePasswordChange}
+                          value={valuePassSingUp}
+                          onChange={(e) => { setValuePassSingUp(e.target.value) } }
+                          variant="filled"
+                          required
+                        />
+                        <VisibilityIcon onClick={handleClickShowPassword} style={{ marginTop:"15px", cursor:"pointer" }} />
+                        
+                      </Paper>
+
+
+                      <Paper style={{ width:"200px", borderRadius:"18px", outline:"auto", display:"flex" }} >
+                        <TextField
+                          fullWidth
+                          id="filled-multiline-flexible"
+                          label="RePassword"
+                          type={valueShowPassword ? 'text' : 'password'}
+                          maxRows={3}
+                          value={valueRePassSingUp}
+                          onChange={(e) => { setValueRePassSingUp(e.target.value) } }
                           variant="filled"
                           required
                         />
