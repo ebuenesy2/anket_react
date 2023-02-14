@@ -86,68 +86,7 @@ function MyExportButton() {
 export const Index =(props: any) => {
   //console.log("props:",props);
 
-  const [success, setSuccess] = useState(0); //! Success
 
-  const [questionState, setQuestionState] = useState("");
-  const [answer1, setAnswer1] = useState("");
-  const [answer2, setAnswer2] = useState("");
-  const [answer3, setAnswer3] = useState("");
-  const [answer4, setAnswer4] = useState("");
-   
-  //! Verileri Kayıt Etme
-  const addData = () => {
-    
-     console.log("Veri Ekleme");
-
-     if(questionState == "") { alert("Soru Yazınız"); }
-     else if (answer1 == "" ) { alert("En az bir Cevap Yazını") }
-     else {
-
-    
-     
-
-     const answers = {
-        answer1:answer1 == '' ? null : answer1,
-        answer2:answer2 == '' ? null : answer2,
-        answer3:answer3 == '' ? null : answer3,
-        answer4:answer4 == '' ? null : answer4
-     }
-
-     const apiUrl_table=process.env.REACT_APP_API_URL+"/api/survey/add";
-     console.log("apiUrl_table:",apiUrl_table);
-     
-      //Eklenen Veriler
-      const NewData={
-        serverId: "0",
-        serverToken:"yildirimdev",
-        question:questionState,
-        answers: answers,
-        created_byToken:"created_byToken"
-      }
-
-     
-
-      axios.post(apiUrl_table,NewData)
-      .then(response => {
-
-        //! State
-        setSuccess(1); //! Başarılı
-
-        alert("Veri Eklendi");
-        
-        //! console
-        console.log("Data:",response.data);
-
-        props.setModalOpen(false);
-
-        props.apiGet();
-          
-      })
-      .catch(error => {  console.log("Api Error:",error.message); });
-
-    }
-
-  }
 
   return (
         <div  className='TableUserList'>
@@ -163,78 +102,7 @@ export const Index =(props: any) => {
               }}
             />
              
-             <Dialog open={props.modalOpen} >
-               <DialogTitle style={{ display:"flex", justifyContent:"center", width:"600px"}} >
-                <div style={{display:"flex", justifyContent:"space-between", width:"500px"}} >
-                  <p>Anket Ekle</p>
-                  <ClearIcon onClick={()=>{props.setModalOpen(false);}}  style={{cursor:"pointer",color:"red",border:"1px solid"}}  />
-                </div>
-               </DialogTitle>
-               <hr/>
-               <DialogContent>
-               <form  >
-                  <div className="form-group">
-                          <label htmlFor="question"> Soru </label>
-                          <input type="text"  className="form-control"
-                          name="question"  placeholder="Anket Sorusunu Yazınız.."
-                          value={questionState} onChange={(e)=>{ setQuestionState(e.target.value); }} />                       
-                  </div>
-
-                  <div className="form-group">
-                      <div style={{ marginTop:"10px",  display:"flex", gap:"10px" }}>
-                        <PanToolIcon style={{fontSize:"30px", color:"red"}} />
-                        <p style={{ marginTop:"auto", marginBottom:"auto" }}>Dikkat: Yazılan Cevap Kadar Gösterir </p>
-                      </div>
-                  </div>
-
-                  <hr />
-
-                  <div className="form-group">
-                          <label htmlFor="answer1"> Cevap 1 </label>
-                          <input type="text"  className="form-control"
-                          name="answer1"  placeholder="Cevap .."
-                          value={answer1} onChange={(e)=>{ setAnswer1(e.target.value);  }} />                       
-                  </div>
-
-                  <hr />
-
-                  <div className="form-group">
-                          <label htmlFor="answer2"> Cevap 2 </label>
-                          <input type="text"  className="form-control"
-                          name="answer2"  placeholder="Cevap .."
-                          value={answer2} onChange={(e)=>{ setAnswer2(e.target.value);  }} />                       
-                  </div>
-
-                  <hr />
-                  
-
-                  <div className="form-group">
-                          <label htmlFor="answer3"> Cevap 3 </label>
-                          <input type="text"  className="form-control"
-                          name="answer3"  placeholder="Cevap .."
-                          value={answer3} onChange={(e)=>{ setAnswer3(e.target.value);  }} />                       
-                  </div>
-
-                  <hr />
-
-                  <div className="form-group">
-                          <label htmlFor="answer4"> Cevap 4 </label>
-                          <input type="text"  className="form-control"
-                          name="answer4"  placeholder="Cevap .."
-                          value={answer4} onChange={(e)=>{ setAnswer4(e.target.value);  }} />                       
-                  </div>
-
-                  <hr />
-                  
-                  
-                  <Button variant="outlined" color="primary" style={{ marginTop:"40px",backgroundColor:"cadetblue", color:"white" }} onClick={()=>{ alert("Veri ekle");  addData(); }} > Kaydet</Button>
-
-                  <hr />
-                    
-
-                </form>
-               </DialogContent>
-             </Dialog>
+        
 
         </div>
     
