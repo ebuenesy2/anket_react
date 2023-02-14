@@ -31,7 +31,7 @@ yarn start
 
  ```
  /3000 => React
- /3001 => Api - Nodejs
+ /3002 => Api - Nodejs
   ```
 
   ## Proje Hakkında - Version [ V1 ]
