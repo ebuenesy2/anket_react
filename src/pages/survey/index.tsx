@@ -44,7 +44,7 @@ function Index() {
        useEffect(() => { apiGet(); }, []);
        
        //! Modal Açma
-       const [modalOpen, setModalOpen] = useState(true);
+       const [modalOpen, setModalOpen] = useState(false);
 
     
   return (

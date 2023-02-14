@@ -4,13 +4,16 @@ import axios from "axios";
 import Navbar from "../../components/navbar";
 import Sidebar from "../../components/sidebar";
 import WidgetDataIstatistics from "../../components/widgetDataIstatistics";
-import TableSurvey from '../../components/tableSurvey';
+import TableSurveyVote from '../../components/tableSurveyVote';
+
 
 //! İcon
 import QuestionAnswerIcon from '@material-ui/icons/QuestionAnswer';
-import { Button } from "@material-ui/core";
+
 
 function Index() {
+
+       const [searchId, setSearchId] = useState(0);
 
        const [success, setSuccess] = useState(0);
        const [tableData, setTableData] = useState<any[]>([])
@@ -18,8 +21,20 @@ function Index() {
        const [tableVoteCount, setTableVoteCount] = useState(0);
      
      
+       useEffect(() => { apiGet(); }, []);
+
        const apiGet = () => {  
-         const apiUrl_table=process.env.REACT_APP_API_URL+"/api/survey/all";
+        
+          let pathname = window.location.search;
+          let Id= pathname.split('?id=');
+
+          const searchIdValue = Id.length == 2 ? Id[1] : 0 ;
+
+          setSearchId(Number(searchIdValue)); //! Search
+
+          console.log("searchIdValue:",searchIdValue);
+
+         const apiUrl_table=process.env.REACT_APP_API_URL+"/api/survey_vote/find_surveyId/"+searchIdValue;
          console.log("apiUrl_table:",apiUrl_table);
          
          axios.get(apiUrl_table)
@@ -34,17 +49,19 @@ function Index() {
              console.log("Data:",response.data);
             
              
-             setSuccess(1); //! Başarılı
+             setSuccess(response.data.status); //! Başarılı
+
+             
                
            })
            .catch(error => {  console.log("Api Error:",error.message); });
          
        };
 
-       useEffect(() => { apiGet(); }, []);
+      
        
        //! Modal Açma
-       const [modalOpen, setModalOpen] = useState(true);
+       const [modalOpen, setModalOpen] = useState(false);
 
     
   return (
@@ -102,11 +119,11 @@ function Index() {
                             </div>
 
                             <div className="listContainer"> 
-                               <div className="listTitle">  Tüm Anket Soruları  </div>
-                               <Button variant="outlined" color="primary" style={{ marginTop:"40px",backgroundColor:"cadetblue", color:"white" }} onClick={()=>{alert("yeni"); setModalOpen(true);   }} > Yeni Oluştur</Button>
+                               <div className="listTitle">  (# {searchId} ) Anket Oy Verenler  </div>
+                            
                                                 
                               {success === 1 ?
-                                <TableSurvey data={tableData} pageSize="10" modalOpen={modalOpen} setModalOpen={setModalOpen}  apiGet={apiGet} />
+                                <TableSurveyVote data={tableData} pageSize="10" modalOpen={modalOpen} setModalOpen={setModalOpen}  apiGet={apiGet} />
                                 :
                                 <p>Veri Bekleniyor</p>
                               }
