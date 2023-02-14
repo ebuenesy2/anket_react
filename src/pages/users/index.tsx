@@ -59,7 +59,7 @@ function Index() {
                             fontSizeTitle={"16px"}
                             fontWeightTitle={"700"}
 
-                            value={"19"}
+                            value={tableData.length}
                             colorValue={"black"}
                             fontSizeValue={"28px"}
                             fontWeightValue={"400"}
@@ -69,16 +69,12 @@ function Index() {
                             fontSizeDescription={"12px"}
                             fontWeightDescription={"700"}
 
-                            titleDescriptionValue={"121"}
+                            titleDescriptionValue={"xx"}
                             colorDescriptionValue={"rgb(160, 160, 160)"}
                             fontSizeDescriptionValue={"12px"}
                             fontWeightDescriptionValue={"700"}
 
-                            LinkName={"Link Name"}
-                            LinkUrl={"/linkUrl"}
-                            colorLink={"blue"}
-                            fontSizeLink={"12px"}
-                            fontWeightLink={"700"}
+                           
 
                             status={"positive"}
                             titleDetailDescription={"20%"}

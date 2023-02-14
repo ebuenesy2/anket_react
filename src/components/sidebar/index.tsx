@@ -60,7 +60,7 @@ function Index() {
 
                    <p className="title">  Anket Çöz </p>
                    <li>
-                     <a href="/question">
+                     <a href="/question?id=1">
                         <HelpOutlineIcon className="icon" />
                         <span> Soru </span>
                      </a>

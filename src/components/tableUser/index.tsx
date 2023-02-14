@@ -150,17 +150,7 @@ export const Index =(props: any) => {
                 Toolbar: MyExportButton,
               }}
             />
-             
-             <Dialog open={true} maxWidth="md" style={{ display:"flex", justifyContent:"center", }} >
-               <DialogTitle>
-                <div style={{color:"red"}} >Başlık</div>
-               </DialogTitle>
-               <hr/>
-               <DialogContent>
-                 <div>İçerik</div>
-               </DialogContent>
-             </Dialog>
-
+          
         </div>
     
   )

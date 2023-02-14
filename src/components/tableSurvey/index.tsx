@@ -7,6 +7,7 @@ import VisibilityIcon from '@material-ui/icons/Visibility';
 import EditIcon from '@material-ui/icons/Edit';
 import ClearIcon from '@material-ui/icons/Clear';
 import PanToolIcon from '@material-ui/icons/PanTool';
+import QuestionAnswerIcon from '@material-ui/icons/QuestionAnswer';
 import Swal from 'sweetalert2';
 
 //! Date
@@ -25,15 +26,16 @@ const deleteUser =(id:any) => {
 }
 
 const vieweUser =(id:any) => {
-  alert(id);
-  alert("vieweUser");
-
-  window.location.href="/survey/vote?id="+id;
+ window.location.href="/survey/vote?id="+id;
 }
 
 const editUser =(id:any) => {
   alert(id);
   alert("editUser");
+}
+
+const editAnswer =(id:any) => {
+   window.location.href="/question?id="+id;
 }
 
 
@@ -72,6 +74,7 @@ function getActions(params:any) {
      <div style={{ color:"red" }} onClick={()=> { deleteUser( params.row.id) }} >   <DeleteIcon />  </div>
      <div style={{ color:"blue" }} onClick={()=> { vieweUser( params.row.id) }} >   <VisibilityIcon />  </div>
      <div style={{ color:"black" }} onClick={()=> { editUser( params.row.id) }} >   <EditIcon />  </div>
+     <div style={{ color:"green" }} onClick={()=> { editAnswer( params.row.id) }} >   <QuestionAnswerIcon />  </div>
    
   </div>;
 }

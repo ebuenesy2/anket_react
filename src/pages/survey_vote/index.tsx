@@ -77,7 +77,7 @@ function Index() {
                           <WidgetDataIstatistics
                             backgroundColor={"#F1F1F1"}                            
                            
-                            title={"Anket Sayısı"}
+                            title={"Anket Oy Sayısı"}
                             colorTitle={"#344563"}
                             fontSizeTitle={"16px"}
                             fontWeightTitle={"700"}
@@ -97,11 +97,7 @@ function Index() {
                             fontSizeDescriptionValue={"12px"}
                             fontWeightDescriptionValue={"700"}
 
-                            LinkName={"Anket Listesi"}
-                            LinkUrl={"/survey"}
-                            colorLink={"blue"}
-                            fontSizeLink={"12px"}
-                            fontWeightLink={"700"}
+                           
 
                             status={"positive"}
                             titleDetailDescription={"xx%"}

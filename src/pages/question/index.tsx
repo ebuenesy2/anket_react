@@ -13,6 +13,8 @@ import RadioGroup from "@material-ui/core/RadioGroup";
 import ArrowLeftIcon from '@material-ui/icons/ArrowLeft';
 import TouchAppIcon from '@material-ui/icons/TouchApp';
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 function onChangeValue(event:any) { 
      console.log("onChangeValue:",event.target.value);
@@ -20,6 +22,49 @@ function onChangeValue(event:any) {
 
 function Index() {
     
+      const [searchId, setSearchId] = useState(0);
+
+       //! Api State
+       const [success, setSuccess] = useState(0);
+       const [answersData, setAnswersData] = useState<any[]>([])
+       const [questionTitle, setQuestionTitle] = useState("");
+       
+     
+     
+       useEffect(() => { apiGet(); }, []);
+
+       const apiGet = () => {  
+        
+          let pathname = window.location.search;
+          let Id= pathname.split('?id=');
+
+          const searchIdValue = Id.length == 2 ? Id[1] : 0 ;
+
+          setSearchId(Number(searchIdValue)); //! Search
+
+          console.log("searchIdValue:",searchIdValue);
+
+         const apiUrl_table=process.env.REACT_APP_API_URL+"/api/survey/"+searchIdValue;
+         console.log("apiUrl_table:",apiUrl_table);
+         
+         axios.get(apiUrl_table)
+              .then(response => {
+                
+                   console.log("response:", response.data);
+     
+               
+                   setSuccess(response.data.status); //! Başarılı
+               
+                   setQuestionTitle(response.data.DB.question); //! Soru
+                   setAnswersData(response.data.DB.answers); //! Cevaplar
+                   
+                   console.log("answersData:", answersData[0].title);
+               
+           })
+           .catch(error => {  console.log("Api Error:",error.message); });
+         
+       };
+     
   return (
         <div className='question'>
                <Sidebar/>
@@ -29,71 +74,41 @@ function Index() {
                          <div className="questionPanel">
                               <div className="questionTitle">
                                    <div className="question"> 
-                                        <div className="questionCount">
-                                             <Progressbar 
-                                                  value={25}
-                                                  maxValue= {30}
-                                                  percView = {false}
-                                             />
-                                             <p className="count" > 25/30 </p>
-                                        </div>
+                                        
                                         <div className="questionName">
-                                             <p> Soru 25 </p>
+                                             <p> Soru {searchId} </p>
                                         </div>
                                    </div>
-                                   <div className="questionTime">
-                                             <CircularProgressbar 
-                                                  title="Countdown"
-                                                  titleSize={"16px"}
-                                                  titleColor={"#0052CC"}
-                                                  titleWeight={"900"}
-                                                  thickness={5}
-                                                  percentileIcon={false}
-                                                  /* backColor={"#0052CC"} */
-                                                  text={"saniye"}
-                                                  value={59}
-                                                  maxValue={60}
-                                                  textColor={"#0052CC"}
-                                                  textSize={"60px"}
-                                                  textWeight={"bold"}
-                                                  subTextSize={"10px"}
-                                                  subtextWeight={"bold"}                                
-                                             />
-                                   </div>
+                                   
                               </div>
                               <div className="questionDescription">
                                    <div className="questionDescriptionLeft">  
                                         <div className="questionView">
                                              <div className="questionsHead" > 
-                                                  <p style={{ opacity: 1 }} > What is the correct command to create a new React project? </p>
+                                                  <p style={{ opacity: 1 }} > {questionTitle} </p>
                                              </div>
                                             
                                              <div className="answerBox">
                                                   <RadioGroup aria-labelledby="demo-radio-buttons-group-label" name="radio-buttons-group" >
-                                                  <div className="answerDescription" >  
+                                                    <div className="answerDescription"  > 
                                                        <div className="choiceBox"> 
                                                             <div className="choice"> <p className="letter"> A </p> </div>
-                                                            <div className="choiceAnswer"> <FormControlLabel onChange={onChangeValue} value="a" control={<Radio />} label="npx create-react-app" /> </div>
+                                                            <div className="choiceAnswer"> <FormControlLabel onChange={onChangeValue} value="a" control={<Radio />} label={answersData[0]?.title} /> </div>
                                                        </div>
 
                                                        <div className="choiceBox"> 
                                                             <div className="choice"> <p className="letter"> B </p> </div>
-                                                            <div className="choiceAnswer"> <FormControlLabel value="b" onChange={onChangeValue} control={<Radio />} label="npx create-react-app myReactApp" /> </div>
+                                                            <div className="choiceAnswer"> <FormControlLabel value="b" onChange={onChangeValue} control={<Radio />} label={answersData[1]?.title} /> </div>
                                                        </div>
 
-                                                       <div className="choiceBox"> 
+                                                       <div className="choiceBox" style={{ display:answersData[2]?.title == null ? "none" : "flex" }} > 
                                                             <div className="choice"> <p className="letter"> C </p> </div>
-                                                            <div className="choiceAnswer"> <FormControlLabel value="c" onChange={onChangeValue} control={<Radio />} label="npm create-react-app" /> </div>
+                                                            <div className="choiceAnswer"> <FormControlLabel value="c" onChange={onChangeValue} control={<Radio />} label={answersData[2]?.title} /> </div>
                                                        </div>
 
-                                                       <div className="choiceBox"> 
+                                                       <div className="choiceBox" style={{ display:answersData[2]?.title == null ? "none" : "flex" }} > 
                                                             <div className="choice"> <p className="letter"> D </p> </div>
-                                                            <div className="choiceAnswer"> <FormControlLabel value="d" onChange={onChangeValue} control={<Radio />} label="npm create-react-app myReactApp" /> </div>
-                                                       </div>
-
-                                                       <div className="choiceBox"> 
-                                                            <div className="choice"> <p className="letter"> E </p> </div>
-                                                            <div className="choiceAnswer"> <FormControlLabel value="e" onChange={onChangeValue} control={<Radio />} label="npm i" /> </div>
+                                                            <div className="choiceAnswer"> <FormControlLabel value="d" onChange={onChangeValue} control={<Radio />} label={answersData[3]?.title} /> </div>
                                                        </div>
                                                   </div>
                                                   </RadioGroup>
@@ -106,7 +121,7 @@ function Index() {
                                              </div>
                                         </div>
                                    </div>
-                                   <div className="questionDescriptionRight"> Right </div>
+                                  
                               </div>
                          </div>
                     </div>
