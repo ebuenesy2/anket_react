@@ -17,7 +17,7 @@ function Index() {
              <hr />
              <div className="center">
                 <ul>
-                   <p className="title">  MAIN</p>
+                   <p className="title">  Anasayfa</p>
                    <li>
                      <a href="/">
                         <DashboardIcon className="icon"/>
@@ -40,29 +40,29 @@ function Index() {
                    <li>
                      <a href="/mycolor">
                         <ColorLensIcon className="icon"/>
-                        <span> My Color </span>
+                        <span> Renklerim </span>
                      </a>
                   </li>
 
-                   <p className="title">  LISTS</p>
+                   <p className="title">  Listeler</p>
                    <li>
                      <a href="/users">
                         <PersonIcon className="icon" />
-                        <span> Users </span>
+                        <span> Kullanıcılar Listesi </span>
                      </a>
                    </li>
                    <li>
                      <a href="/survey">
                         <PeopleIcon className="icon" />
-                        <span> Survey </span>
+                        <span> Anket Listesi </span>
                      </a>
                    </li>
 
-                   <p className="title">  Survey </p>
+                   <p className="title">  Anket Çöz </p>
                    <li>
                      <a href="/question">
                         <HelpOutlineIcon className="icon" />
-                        <span> Question </span>
+                        <span> Soru </span>
                      </a>
                    </li>
                  

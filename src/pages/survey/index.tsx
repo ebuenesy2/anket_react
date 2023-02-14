@@ -7,7 +7,8 @@ import WidgetDataIstatistics from "../../components/widgetDataIstatistics";
 import TableSurvey from '../../components/tableSurvey';
 
 //! İcon
-import PersonOutlineOutlinedIcon from '@material-ui/icons/PersonOutlineOutlined';
+import QuestionAnswerIcon from '@material-ui/icons/QuestionAnswer';
+import { Button } from "@material-ui/core";
 
 function Index() {
 
@@ -38,10 +39,10 @@ function Index() {
 
        useEffect(() => { apiGet(); }, []);
        
-       
+       //! Modal Açma
+       const [modalOpen, setModalOpen] = useState(false);
 
-      
-
+    
   return (
         <div className='users'>
                <Sidebar/>
@@ -54,7 +55,7 @@ function Index() {
                           <WidgetDataIstatistics
                             backgroundColor={"#F1F1F1"}                            
                            
-                            title={"Kullanıcılar"}
+                            title={"Anket Sayısı"}
                             colorTitle={"#344563"}
                             fontSizeTitle={"16px"}
                             fontWeightTitle={"700"}
@@ -64,7 +65,7 @@ function Index() {
                             fontSizeValue={"28px"}
                             fontWeightValue={"400"}
 
-                            titleDescription={"Online Sayısı: "}
+                            titleDescription={"Oylanan Anket Sayısı: "}
                             colorDescription={"rgb(160, 160, 160)"}
                             fontSizeDescription={"12px"}
                             fontWeightDescription={"700"}
@@ -74,14 +75,14 @@ function Index() {
                             fontSizeDescriptionValue={"12px"}
                             fontWeightDescriptionValue={"700"}
 
-                            LinkName={"Link Name"}
-                            LinkUrl={"/linkUrl"}
+                            LinkName={"Anket Listesi"}
+                            LinkUrl={"/survey"}
                             colorLink={"blue"}
                             fontSizeLink={"12px"}
                             fontWeightLink={"700"}
 
                             status={"positive"}
-                            titleDetailDescription={"20%"}
+                            titleDetailDescription={"xx%"}
                             fontSizeDetailDescription={"14px"}
                             fontWeightDetailDescription={"400"}
 
@@ -91,16 +92,17 @@ function Index() {
                             fontWeightDetailContent={"700"}
 
                             WidgetBoxColor={"#FEDDC7"}
-                            icon={<PersonOutlineOutlinedIcon style={{ fontSize:"35px",color:"black"}} />}
+                            icon={<QuestionAnswerIcon style={{ fontSize:"35px",color:"black"}} />}
                           />
                     </div>
                             </div>
 
                             <div className="listContainer"> 
                                <div className="listTitle">  Tüm Anket Soruları  </div>
+                               <Button variant="outlined" color="primary" style={{ marginTop:"40px",backgroundColor:"cadetblue", color:"white" }} onClick={()=>{alert("yeni"); setModalOpen(true);   }} > Yeni Oluştur</Button>
                                                 
                               {success === 1 ?
-                                <TableSurvey data={tableData} pageSize="10" />
+                                <TableSurvey data={tableData} pageSize="10" modalOpen={modalOpen} setModalOpen={setModalOpen} />
                                 :
                                 <p>Veri Bekleniyor</p>
                               }

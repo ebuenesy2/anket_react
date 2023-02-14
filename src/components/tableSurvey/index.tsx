@@ -119,13 +119,14 @@ function MyExportButton() {
 }
 
 export const Index =(props: any) => {
-  //console.log("props:",props);
+  console.log("props:",props);
 
-  const [isLoading, setisLoading] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
 
   return (
         <div  className='TableUserList'>
-          <DataGrid
+
+            <DataGrid
               rows={props.data}
               columns={columns}
               pageSize={ Number(props.pageSize) ? Number(props.pageSize) : 8 }
@@ -136,11 +137,11 @@ export const Index =(props: any) => {
               }}
             />
              
-             <Dialog open={isLoading} >
+             <Dialog open={props.newModal} >
                <DialogTitle style={{ display:"flex", justifyContent:"center", width:"600px"}} >
                 <div style={{display:"flex", justifyContent:"space-between", width:"500px"}} >
                   <p>Anket Ekle</p>
-                  <ClearIcon onClick={()=>{setisLoading(false);}}  style={{cursor:"pointer",color:"red",border:"1px solid"}}  />
+                  <ClearIcon onClick={()=>{props.setModalOpen(false);}}  style={{cursor:"pointer",color:"red",border:"1px solid"}}  />
                 </div>
                </DialogTitle>
                <hr/>
