@@ -31,13 +31,13 @@ function Index() {
   const handleClickShowPassword = () => { setShowValuePassword(!valueShowPassword); }; //! Password Show
 
   //! SingUp
-  const [valueNameSingUp, setValueNameSingUp] = React.useState(''); //! UserName
-
-
+  const [valueNameSingUp, setValueNameSingUp] = React.useState(''); //! Name
+  const [valueSurNameSingUp, setValueSurNameSingUp] = React.useState(''); //! SurName
+  const [valueUsernameSingUp, setValueUsernameSingUp] = React.useState(''); //! SurName
 
 
   //! Api State
-  const [LoginSuccess, setLoginSuccess] = useState(0);
+  const [LoginSuccess, setLoginSuccess] = useState(null);
   const [tableLoginData, setTableLoginData] = useState<any[]>([])
 
   const login = () => {
@@ -82,6 +82,24 @@ function Index() {
   const signup = () => {
 
     alert("kayıt ol");
+                
+    const apiUrl_table=process.env.REACT_APP_API_URL+"/api/user/add";
+    console.log("apiUrl_table:",apiUrl_table);
+
+     //Eklenen Veriler
+     const NewData={
+      serverId: 0,
+      serverToken:"yildirimdev",
+      userRoleToken:"token3",
+      userTypeToken:"token1",
+
+      name:  valueNameSingUp == "" ? null : valueNameSingUp,
+      surname:  valueSurNameSingUp == "" ? null : valueSurNameSingUp,
+      username:  valueUsernameSingUp == "" ? null : valueUsernameSingUp
+      
+    }
+
+    console.log("NewData:",NewData);
 
   } //! signup
     
@@ -91,7 +109,7 @@ function Index() {
            <div className="main">
 
                <div className={`loginPanel ${checked ? 'active' : ''}`}>
-                  <a onClick={handleChange} className="title"> Login </a>
+                  <a onClick={handleChange} className="title"> Giriş Yap </a>
 
                   <div className={`loginControlPanel ${checked ? 'active' : ''}`}>
 
@@ -99,7 +117,7 @@ function Index() {
                   <Paper style={{ width:"250px",  outline:"auto" }} >
 
                       <Typography
-                        style={{ display:LoginSuccess == 1 ? "none" : "flex", justifyContent:"center", background:"red", color:"white" }}
+                        style={{ display:LoginSuccess ==  0 ? "flex" : "none", justifyContent:"center", background:"red", color:"white" }}
                         color="textSecondary"
                         variant="caption"
                       >
@@ -153,7 +171,7 @@ function Index() {
                </div>
 
               <div className={`signupPanel ${checked ? 'active' : ''}`}>
-                   <a onClick={handleChange}  className={`title ${checked ? 'active' : ''}`}> Sign Up </a>
+                   <a onClick={handleChange}  className={`title ${checked ? 'active' : ''}`}> Kayıt Ol </a>
                     
                    <div className={`loginControlPanel ${checked == false ? 'active' : ''}`}>
 
@@ -162,11 +180,11 @@ function Index() {
                         <TextField
                             fullWidth
                             id="filled-multiline-flexible"
-                            label="Username"
+                            label="Adınız"
                             type={'text'}
                             maxRows={3}
-                            value={valueUserName}
-                            onChange={handleValueUserNameChange}
+                            value={valueNameSingUp}
+                            onChange={(e) => { setValueNameSingUp(e.target.value) } }
                             variant="filled"
                             required
                           />
@@ -176,27 +194,27 @@ function Index() {
                         <TextField
                             fullWidth
                             id="filled-multiline-flexible"
-                            label="Username"
+                            label="Soyaddınız"
                             type={'text'}
                             maxRows={3}
-                            value={valueUserName}
-                            onChange={handleValueUserNameChange}
+                            value={valueSurNameSingUp}
+                            onChange={(e) => { setValueSurNameSingUp(e.target.value) } }
                             variant="filled"
                             required
                           />
                       </Paper>
-                    </div>
+                   </div>
 
-                    <div style={{ display:"flex", width:"430px", justifyContent:"space-between", marginTop:"-10px" }} >
+                    <div style={{ display:"flex", width:"430px", justifyContent:"space-between" , marginTop:"-10px" }} >
                       <Paper style={{ width:"200px", borderRadius:"18px", outline:"auto" }} >
                         <TextField
                             fullWidth
                             id="filled-multiline-flexible"
-                            label="Username"
+                            label="UserName"
                             type={'text'}
                             maxRows={3}
-                            value={valueUserName}
-                            onChange={handleValueUserNameChange}
+                            value={valueUsernameSingUp}
+                            onChange={(e) => { setValueNameSingUp(e.target.value) } }
                             variant="filled"
                             required
                           />
@@ -206,11 +224,11 @@ function Index() {
                         <TextField
                             fullWidth
                             id="filled-multiline-flexible"
-                            label="Username"
+                            label="Soyaddınız"
                             type={'text'}
                             maxRows={3}
-                            value={valueUserName}
-                            onChange={handleValueUserNameChange}
+                            value={valueSurNameSingUp}
+                            onChange={(e) => { setValueSurNameSingUp(e.target.value) } }
                             variant="filled"
                             required
                           />
