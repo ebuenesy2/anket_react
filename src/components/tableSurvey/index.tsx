@@ -5,7 +5,6 @@ import { DataGrid, GridToolbarExport, GridToolbarContainer } from '@material-ui/
 import DeleteIcon from '@material-ui/icons/Delete';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import EditIcon from '@material-ui/icons/Edit';
-import EmailIcon from '@material-ui/icons/Email';
 import ClearIcon from '@material-ui/icons/Clear';
 
 
@@ -35,10 +34,7 @@ const editUser =(id:any) => {
 }
 
 
-const messageSend =(id:any) => {
-  alert(id);
-  alert("messageSend");
-}
+
 
 /* Html Veri Ekleme */
 
@@ -73,13 +69,13 @@ function getActions(params:any) {
      <div style={{ color:"red" }} onClick={()=> { deleteUser( params.row.id) }} >   <DeleteIcon />  </div>
      <div style={{ color:"blue" }} onClick={()=> { vieweUser( params.row.id) }} >   <VisibilityIcon />  </div>
      <div style={{ color:"black" }} onClick={()=> { editUser( params.row.id) }} >   <EditIcon />  </div>
-     <div style={{ color:"aqua" }} onClick={()=> { messageSend( params.row.id) }} >   <EmailIcon  />  </div>
+   
   </div>;
 }
 
-//! Resim Ad - Soyad Kullanma
-function getFullNameImage(params:any) { 
-  return <div style={{ display:"flex", gap:"5px" }}>  <img  style={{ width: "50px", height:"50px", borderRadius:"10px" , objectFit:"cover", objectPosition:"50% 50%"}} src={params.row.userImageUrl} /> <a> {params.row.name} </a> <a> {params.row.surname} </a> </div>;
+//! Div Kullanma
+function getQuestion(params:any) {
+  return <div style={{ display:"flex", gap:"5px" }}> <a> {params.row.question} </a>  </div>;
 }
 
 //! Durum Değişimi
@@ -93,10 +89,6 @@ function getActive(params:any) {
 }
 
 
-//! Online  Değişimi
-function getOnlinChange(params:any) {
-  return <div style={{ display:"flex", gap:"5px" }}> {params.row.onlineStatus == true ? <div style={{ color:"darkgreen" }}> {params.formattedValue} </div> : <div style={{ color:"red" }}> Offline </div> } </div>;
-}
 
 
 //! Zaman Kullanma - Otomatik bulur
@@ -109,21 +101,12 @@ function getTime (params:any) {
 /* Html Veri Ekleme */
 
 const columns = [
-  { field: 'id', headerName: 'ID', width: 100 },
+  { field: 'id', headerName: 'ID', width: 180 },
   { field: 'actions', headerName: 'Actions', width: 150,  renderCell:getActions, editable: false},
-  { field: 'name', headerName: 'Name', width: 250,  renderCell:getFullNameImage, editable: false},
-  { field: 'role', headerName: 'Role', width: 150,  editable: false},
-  { field: 'online', headerName: 'Online', width: 150, renderCell:getStatus, editable: false},
-  { field: 'aktif', headerName: 'Aktif', width: 150, renderCell:getActive, editable: false},
-  { field: 'email', headerName: 'Email', width: 225,  editable: false},
-  { field: 'username', headerName: 'Username', width: 225,  editable: false},
-  { field: 'created_at', headerName: 'Oluşturduğu Zaman', width: 250, renderCell:getTime, editable: false},
-  { field: 'onlinePage', headerName: 'Online Sayfasi', width: 225, renderCell:getOnlinChange, editable: false},
-  { field: 'totalDurationMs', headerName: 'Toplam Online Süresi(ms)', width: 300, editable: false},
-  { field: 'onlineMod', headerName: 'OnlineMod', width: 175, renderCell:getOnlinChange, editable: false},
-  { field: 'onlineLastLogin_At', headerName: 'Login Zaman', width: 250, renderCell:getTime,  editable: false},
-  { field: 'onlineLastLoginout_At', headerName: 'Loginout Zaman', width: 250,  renderCell:getTime, editable: false},
+  { field: 'questions', headerName: 'Questions', width: 150,  renderCell:getQuestion,  editable: false},
 
+
+  { field: 'created_at', headerName: 'Oluşturduğu Zaman', width: 250, renderCell:getTime, editable: false}
 ];
 
 
@@ -138,7 +121,7 @@ function MyExportButton() {
 export const Index =(props: any) => {
   //console.log("props:",props);
 
-  const [isLoading, setisLoading] = useState(true);
+  const [isLoading, setisLoading] = useState(false);
 
   return (
         <div  className='TableUserList'>

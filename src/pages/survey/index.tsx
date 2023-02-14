@@ -16,8 +16,8 @@ function Index() {
      
      
        const apiGet = () => {  
-         const apiUrl_table=process.env.REACT_APP_API_URL+"/api/user/all";
-         //console.log("apiUrl_table:",apiUrl_table);
+         const apiUrl_table=process.env.REACT_APP_API_URL+"/api/survey/all";
+         console.log("apiUrl_table:",apiUrl_table);
          
          axios.get(apiUrl_table)
            .then(response => {
