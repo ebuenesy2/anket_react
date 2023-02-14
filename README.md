@@ -1,21 +1,14 @@
 # React Redux
-Sabit React Redux Projesi
+Anket uygulaması
 
-## Ders Video Url
- ```
-https://www.youtube.com/watch?v=8ZHO8FZfnWo&list=PL8IHDq7oEkgHFrd0IW1JWoEoc9G2_eXTJ&index=3
- ```
+
  
 ## Githup Url
  ```
-https://github.com/reactdersleri/expense_tracker_fe
+https://github.com/ebuenesy2/anket_nodejs
 ```
 
-## Kullanılan Api
 
- ```
-https://yildirimdev-server.herokuapp.com/api/note/all
-  ```
 
 ## Çalıştırma
 
@@ -38,7 +31,7 @@ yarn start
 
  ```
  /3000 => React
- /3001 => Api - Nodejs
+ /3002 => Api - Nodejs
   ```
 
   ## Proje Hakkında - Version [ V1 ]

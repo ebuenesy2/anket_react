@@ -1,6 +1,4 @@
 import "./index.css";
-import axios from "axios";
-import { useEffect, useState } from 'react';
 import { DataGrid, GridToolbarExport, GridToolbarContainer } from '@material-ui/data-grid';
 
 //! icons
@@ -12,6 +10,7 @@ import EmailIcon from '@material-ui/icons/Email';
 
 //! Date
 import Moment from 'moment'; //! Date
+import { Dialog, DialogContent, DialogTitle } from "@material-ui/core";
 Moment.locale(Moment.locale()); // Lokasyona göre Zaman alıyor
 
 
@@ -137,7 +136,8 @@ function MyExportButton() {
 export const Index =(props: any) => {
   //console.log("props:",props);
 
-    
+
+
   return (
         <div  className='TableUserList'>
           <DataGrid
@@ -150,9 +150,24 @@ export const Index =(props: any) => {
                 Toolbar: MyExportButton,
               }}
             />
+             
+             <Dialog open={true} maxWidth="md" style={{ display:"flex", justifyContent:"center", }} >
+               <DialogTitle>
+                <div style={{color:"red"}} >Başlık</div>
+               </DialogTitle>
+               <hr/>
+               <DialogContent>
+                 <div>İçerik</div>
+               </DialogContent>
+             </Dialog>
+
         </div>
     
   )
 }
 
 export default Index;
+function useStyles() {
+  throw new Error("Function not implemented.");
+}
+
