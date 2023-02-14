@@ -52,9 +52,9 @@ function Index() {
                      </a>
                    </li>
                    <li>
-                     <a href="/clients">
+                     <a href="/survey">
                         <PeopleIcon className="icon" />
-                        <span> Clients </span>
+                        <span> Survey </span>
                      </a>
                    </li>
 
