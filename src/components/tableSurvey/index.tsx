@@ -6,12 +6,14 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import EditIcon from '@material-ui/icons/Edit';
 import ClearIcon from '@material-ui/icons/Clear';
+import PanToolIcon from '@material-ui/icons/PanTool';
 
 
 //! Date
 import Moment from 'moment'; //! Date
-import { Dialog, DialogContent, DialogTitle } from "@material-ui/core";
+import { Button, Dialog, DialogContent, DialogTitle } from "@material-ui/core";
 import { useState } from "react";
+import axios from "axios";
 Moment.locale(Moment.locale()); // Lokasyona göre Zaman alıyor
 
 
@@ -26,6 +28,8 @@ const deleteUser =(id:any) => {
 const vieweUser =(id:any) => {
   alert(id);
   alert("vieweUser");
+
+  window.location.href="/survey/vote?id="+id;
 }
 
 const editUser =(id:any) => {
@@ -78,16 +82,10 @@ function getQuestion(params:any) {
   return <div style={{ display:"flex", gap:"5px" }}> <a> {params.row.question} </a>  </div>;
 }
 
-//! Durum Değişimi
-function getStatus(params:any) {
-  return <div style={{ display:"flex", gap:"5px" }}> {params.row.onlineStatus == true ? <div style={{ color:"darkgreen" }}> Online </div> : <div style={{ color:"red" }}> Offline </div> } </div>;
+//! Div Kullanma
+function getVote(params:any) {
+  return <div style={{ display:"flex", gap:"5px" }}> <a> {params.row.voteCount} </a>  </div>;
 }
-
-//! Aktif Değişimi
-function getActive(params:any) { 
-  return <div style={{ display:"flex", gap:"5px" }}> {params.row.isActive == true ? <div style={{ color:"darkgreen" }}> Active </div> : <div style={{ color:"red" }}> Pasif </div> } </div>;
-}
-
 
 
 
@@ -103,8 +101,8 @@ function getTime (params:any) {
 const columns = [
   { field: 'id', headerName: 'ID', width: 180 },
   { field: 'actions', headerName: 'Actions', width: 150,  renderCell:getActions, editable: false},
-  { field: 'questions', headerName: 'Questions', width: 150,  renderCell:getQuestion,  editable: false},
-
+  { field: 'questions', headerName: 'Soru', width: 150,  renderCell:getQuestion,  editable: false},
+  { field: 'vote', headerName: 'Oylama Sayısı', width: 200,  renderCell:getVote,  editable: false},
 
   { field: 'created_at', headerName: 'Oluşturduğu Zaman', width: 250, renderCell:getTime, editable: false}
 ];
@@ -119,9 +117,70 @@ function MyExportButton() {
 }
 
 export const Index =(props: any) => {
-  console.log("props:",props);
+  //console.log("props:",props);
 
-  const [modalOpen, setModalOpen] = useState(false);
+  const [success, setSuccess] = useState(0); //! Success
+
+  const [questionState, setQuestionState] = useState("");
+  const [answer1, setAnswer1] = useState("");
+  const [answer2, setAnswer2] = useState("");
+  const [answer3, setAnswer3] = useState("");
+  const [answer4, setAnswer4] = useState("");
+   
+  //! Verileri Kayıt Etme
+  const addData = () => {
+    
+     console.log("Veri Ekleme");
+
+     if(questionState == "") { alert("Soru Yazınız"); }
+     else if (answer1 == "" ) { alert("En az bir Cevap Yazını") }
+     else {
+
+    
+     
+
+     const answers = {
+        answer1:answer1 == '' ? null : answer1,
+        answer2:answer2 == '' ? null : answer2,
+        answer3:answer3 == '' ? null : answer3,
+        answer4:answer4 == '' ? null : answer4
+     }
+
+     const apiUrl_table=process.env.REACT_APP_API_URL+"/api/survey/add";
+     console.log("apiUrl_table:",apiUrl_table);
+     
+      //Eklenen Veriler
+      const NewData={
+        serverId: "0",
+        serverToken:"yildirimdev",
+        question:questionState,
+        answers: answers,
+        created_byToken:"created_byToken"
+      }
+
+     
+
+      axios.post(apiUrl_table,NewData)
+      .then(response => {
+
+        //! State
+        setSuccess(1); //! Başarılı
+
+        alert("Veri Eklendi");
+        
+        //! console
+        console.log("Data:",response.data);
+
+        props.setModalOpen(false);
+
+        props.apiGet();
+          
+      })
+      .catch(error => {  console.log("Api Error:",error.message); });
+
+    }
+
+  }
 
   return (
         <div  className='TableUserList'>
@@ -146,7 +205,67 @@ export const Index =(props: any) => {
                </DialogTitle>
                <hr/>
                <DialogContent>
-                 <div>İçerik</div>
+               <form  >
+                  <div className="form-group">
+                          <label htmlFor="question"> Soru </label>
+                          <input type="text"  className="form-control"
+                          name="question"  placeholder="Anket Sorusunu Yazınız.."
+                          value={questionState} onChange={(e)=>{ setQuestionState(e.target.value); }} />                       
+                  </div>
+
+                  <div className="form-group">
+                      <div style={{ marginTop:"10px",  display:"flex", gap:"10px" }}>
+                        <PanToolIcon style={{fontSize:"30px", color:"red"}} />
+                        <p style={{ marginTop:"auto", marginBottom:"auto" }}>Dikkat: Yazılan Cevap Kadar Gösterir </p>
+                      </div>
+                  </div>
+
+                  <hr />
+
+                  <div className="form-group">
+                          <label htmlFor="answer1"> Cevap 1 </label>
+                          <input type="text"  className="form-control"
+                          name="answer1"  placeholder="Cevap .."
+                          value={answer1} onChange={(e)=>{ setAnswer1(e.target.value);  }} />                       
+                  </div>
+
+                  <hr />
+
+                  <div className="form-group">
+                          <label htmlFor="answer2"> Cevap 2 </label>
+                          <input type="text"  className="form-control"
+                          name="answer2"  placeholder="Cevap .."
+                          value={answer2} onChange={(e)=>{ setAnswer2(e.target.value);  }} />                       
+                  </div>
+
+                  <hr />
+                  
+
+                  <div className="form-group">
+                          <label htmlFor="answer3"> Cevap 3 </label>
+                          <input type="text"  className="form-control"
+                          name="answer3"  placeholder="Cevap .."
+                          value={answer3} onChange={(e)=>{ setAnswer3(e.target.value);  }} />                       
+                  </div>
+
+                  <hr />
+
+                  <div className="form-group">
+                          <label htmlFor="answer4"> Cevap 4 </label>
+                          <input type="text"  className="form-control"
+                          name="answer4"  placeholder="Cevap .."
+                          value={answer4} onChange={(e)=>{ setAnswer4(e.target.value);  }} />                       
+                  </div>
+
+                  <hr />
+                  
+                  
+                  <Button variant="outlined" color="primary" style={{ marginTop:"40px",backgroundColor:"cadetblue", color:"white" }} onClick={()=>{ alert("Veri ekle");  addData(); }} > Kaydet</Button>
+
+                  <hr />
+                    
+
+                </form>
                </DialogContent>
              </Dialog>
 

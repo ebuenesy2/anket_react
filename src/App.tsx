@@ -8,6 +8,8 @@ import MyColor from './pages/mycolor';
 import Login from './pages/login';
 import Users from './pages/users';
 import Survey from './pages/survey';
+import SurveyVote from './pages/survey_vote';
+
 import Clients from './pages/clients';
 import Question from './pages/question';
 import Setting from './pages/setting';
@@ -26,6 +28,8 @@ import Setting from './pages/setting';
           <Route path="/login" element={<Login/>} />
           <Route path="/users" element={<Users />} />
           <Route path="/survey" element={<Survey />} />
+          <Route path="/survey/vote" element={<SurveyVote />} />
+
           <Route path="/clients" element={<Clients/>} />
           <Route path="/question" element={<Question/>} />
           <Route path="/setting" element={<Setting/>} />
