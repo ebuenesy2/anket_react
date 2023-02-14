@@ -131,8 +131,8 @@ export const Index =(props: any) => {
     
      console.log("Veri Ekleme");
 
-     if(questionState == "") { alert("Soru Yazınız"); }
-     else if (answer1 == "" ) { alert("En az bir Cevap Yazını") }
+    if (questionState == "") {  alert("Soru Eksik"); }
+    else if (answer1 == "") {  alert("En az bir cevap yazılmalıdır"); }
      else {
 
         const answers = {
@@ -280,7 +280,7 @@ export const Index =(props: any) => {
                   <hr />
                   
                   
-                  <Button variant="outlined" color="primary" style={{ marginTop:"40px",backgroundColor:"cadetblue", color:"white" }} onClick={()=>{ alert("Veri ekle");  addData(); }} > Kaydet</Button>
+                  <Button variant="outlined" color="primary" style={{ marginTop:"40px",backgroundColor:"cadetblue", color:"white" }} onClick={()=>{   addData(); }} > Kaydet</Button>
 
                   <hr />
                     
