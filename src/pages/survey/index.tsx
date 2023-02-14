@@ -103,7 +103,7 @@ function Index() {
 
                             <div className="listContainer"> 
                                <div className="listTitle">  Tüm Anket Soruları  </div>
-                               <Button variant="outlined" color="primary" style={{ marginTop:"40px",backgroundColor:"cadetblue", color:"white" }} onClick={()=>{alert("yeni"); setModalOpen(true);   }} > Yeni Oluştur</Button>
+                               <Button variant="outlined" color="primary" style={{ marginTop:"40px",backgroundColor:"cadetblue", color:"white" }} onClick={()=>{ setModalOpen(true);   }} > Yeni Oluştur</Button>
                                                 
                               {success === 1 ?
                                 <TableSurvey data={tableData} pageSize="10" modalOpen={modalOpen} setModalOpen={setModalOpen}  apiGet={apiGet} />
