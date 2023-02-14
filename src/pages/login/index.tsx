@@ -11,6 +11,8 @@ import LockOpenIcon from '@material-ui/icons/LockOpen';
 import SaveIcon from '@material-ui/icons/Save';
 import axios from "axios";
 
+import Swal from 'sweetalert2';
+
 
 
 function Index() {
@@ -66,7 +68,27 @@ function Index() {
       setLoginSuccess(response.data.status); //! Başarılı
 
       if(response.data.status ==1) {
-         alert("Kullanıcı Girişi oldu");
+        
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'İşleminiz Başarılı',
+          showConfirmButton: false,
+          timer: 2000
+        });
+
+         //! window.location.href ="/survey"; //! Sayfa Yönledirme
+      }
+      
+      else if(response.data.status ==0) {
+        
+        Swal.fire({
+          position: 'center',
+          icon: 'error',
+          title: 'İşleminiz Hatalı',
+          showConfirmButton: false,
+          timer: 2000
+        });
 
          //! window.location.href ="/survey"; //! Sayfa Yönledirme
       }
