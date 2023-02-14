@@ -137,7 +137,7 @@ export const Index =(props: any) => {
               }}
             />
              
-             <Dialog open={props.newModal} >
+             <Dialog open={props.modalOpen} >
                <DialogTitle style={{ display:"flex", justifyContent:"center", width:"600px"}} >
                 <div style={{display:"flex", justifyContent:"space-between", width:"500px"}} >
                   <p>Anket Ekle</p>
