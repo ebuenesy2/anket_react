@@ -18,37 +18,10 @@ Moment.locale(Moment.locale()); // Lokasyona göre Zaman alıyor
 
 
 
-
-/* Function */
-const deleteUser =(id:any) => {
-    alert(id);
-    alert("delete");
+//! Div Kullanma
+function getAnswerTitle(params:any) {
+  return <div style={{ display:"flex", gap:"5px" }}> <a> {params.row.surveyAnswersTitle} </a>  </div>;
 }
-
-const vieweUser =(id:any) => {
-  alert(id);
-  alert("vieweUser");
-
-  window.location.href="/survey/vote?id="+id;
-}
-
-const editUser =(id:any) => {
-  alert(id);
-  alert("editUser");
-}
-
-
-//! Actions Kullanma
-function getActions(params:any) {
-  return <div style={{ display:"flex", gap:"5px",cursor:"pointer" }}>
-     <div style={{ color:"red" }} onClick={()=> { deleteUser( params.row.id) }} >   <DeleteIcon />  </div>
-     <div style={{ color:"blue" }} onClick={()=> { vieweUser( params.row.id) }} >   <VisibilityIcon />  </div>
-     <div style={{ color:"black" }} onClick={()=> { editUser( params.row.id) }} >   <EditIcon />  </div>
-   
-  </div>;
-}
-
-
 
 //! Div Kullanma
 function getUserId(params:any) {
@@ -68,7 +41,7 @@ function getTime (params:any) {
 
 const columns = [
   { field: 'id', headerName: 'ID', width: 180 },
-  { field: 'actions', headerName: 'Actions', width: 150,  renderCell:getActions, editable: false},
+  { field: 'answerTitle', headerName: 'Cevap', width: 200,  renderCell:getAnswerTitle,  editable: false},
   { field: 'UserId', headerName: 'KullanıcıId', width: 200,  renderCell:getUserId,  editable: false},
 
   { field: 'created_at', headerName: 'Oluşturduğu Zaman', width: 250, renderCell:getTime, editable: false}
