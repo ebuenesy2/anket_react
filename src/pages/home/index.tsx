@@ -11,7 +11,8 @@ import ImportContactsIcon from '@material-ui/icons/ImportContacts';
 import AlarmIcon from '@material-ui/icons/Alarm';
 import PersonOutlineOutlinedIcon from '@material-ui/icons/PersonOutlineOutlined';
 import BlurCircularIcon from '@material-ui/icons/BlurCircular';
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 
 
@@ -24,6 +25,37 @@ function Index() {
     if (userLoginStatus != "true") { window.location.href = "/login"; }
    
    }, []);
+
+    
+    const [tableData, setTableData] = useState<any[]>([])
+    const [userCount, setUserCount] = useState(0);
+    const [surveyCount, setSurveyCount] = useState(0);
+    const [surveyVoteCount, setSurveyVoteCount] = useState(0);
+
+    const apiGet = () => {  
+      const apiUrl_table=process.env.REACT_APP_API_URL+"/dashboard";
+      console.log("apiUrl_table:",apiUrl_table);
+      
+      axios.get(apiUrl_table)
+        .then(response => {
+  
+          //! State
+          
+          setTableData(response.data.DB);
+          setUserCount(response.data.user.length);
+          setSurveyCount(response.data.survey.length);
+          setSurveyVoteCount(response.data.survey_vote.length);
+
+          
+          console.log("Data:",response.data);
+         
+            
+        })
+        .catch(error => {  console.log("Api Error:",error.message); });
+      
+    };
+
+    useEffect(() => { apiGet(); }, []);
     
   return (
         <div className='home'>
@@ -41,29 +73,29 @@ function Index() {
                             fontSizeTitle={"16px"}
                             fontWeightTitle={"700"}
 
-                            value={"19"}
+                            value={userCount}
                             colorValue={"black"}
                             fontSizeValue={"28px"}
                             fontWeightValue={"400"}
 
-                            titleDescription={"Online Sayısı: "}
+                            titleDescription={"xxx: "}
                             colorDescription={"rgb(160, 160, 160)"}
                             fontSizeDescription={"12px"}
                             fontWeightDescription={"700"}
 
-                            titleDescriptionValue={"121"}
+                            titleDescriptionValue={"xx"}
                             colorDescriptionValue={"rgb(160, 160, 160)"}
                             fontSizeDescriptionValue={"12px"}
                             fontWeightDescriptionValue={"700"}
 
-                            LinkName={"Link Name"}
-                            LinkUrl={"/linkUrl"}
+                            LinkName={"Kullanıcı Listesi"}
+                            LinkUrl={"/users"}
                             colorLink={"blue"}
                             fontSizeLink={"12px"}
                             fontWeightLink={"700"}
 
                             status={"positive"}
-                            titleDetailDescription={"20%"}
+                            titleDetailDescription={"xx%"}
                             fontSizeDetailDescription={"14px"}
                             fontWeightDetailDescription={"400"}
 
@@ -79,28 +111,28 @@ function Index() {
                            <WidgetDataIstatistics
                             backgroundColor={"#F1F1F1"}                            
                            
-                            title={"Öğretmenler"}
+                            title={"Anket"}
                             colorTitle={"#344563"}
                             fontSizeTitle={"16px"}
                             fontWeightTitle={"700"}
 
-                            value={"300"}
+                            value={surveyCount}
                             colorValue={"black"}
                             fontSizeValue={"28px"}
                             fontWeightValue={"400"}
 
-                            titleDescription={"Online Sayısı: "}
+                            titleDescription={"xx "}
                             colorDescription={"rgb(160, 160, 160)"}
                             fontSizeDescription={"12px"}
                             fontWeightDescription={"700"}
 
-                            titleDescriptionValue={"121"}
+                            titleDescriptionValue={"xx"}
                             colorDescriptionValue={"rgb(160, 160, 160)"}
                             fontSizeDescriptionValue={"12px"}
                             fontWeightDescriptionValue={"700"}
 
-                            LinkName={"Link Name"}
-                            LinkUrl={"/linkUrl"}
+                            LinkName={"Anket Listesi"}
+                            LinkUrl={"/survey"}
                             colorLink={"blue"}
                             fontSizeLink={"12px"}
                             fontWeightLink={"700"}
@@ -122,28 +154,28 @@ function Index() {
                           <WidgetDataIstatistics
                             backgroundColor={"#F1F1F1"}                            
                            
-                            title={"Reklam Verenler"}
+                            title={"Oylanan Anket Sayısı"}
                             colorTitle={"#344563"}
                             fontSizeTitle={"16px"}
                             fontWeightTitle={"700"}
 
-                            value={"350"}
+                            value={surveyVoteCount}
                             colorValue={"black"}
                             fontSizeValue={"28px"}
                             fontWeightValue={"400"}
 
-                            titleDescription={"Online Sayısı: "}
+                            titleDescription={"xx"}
                             colorDescription={"rgb(160, 160, 160)"}
                             fontSizeDescription={"12px"}
                             fontWeightDescription={"700"}
 
-                            titleDescriptionValue={"121"}
+                            titleDescriptionValue={"xx"}
                             colorDescriptionValue={"rgb(160, 160, 160)"}
                             fontSizeDescriptionValue={"12px"}
                             fontWeightDescriptionValue={"700"}
 
-                            LinkName={"Link Name"}
-                            LinkUrl={"/linkUrl"}
+                            LinkName={"Detay(#1)"}
+                            LinkUrl={"/survey/vote?id=1"}
                             colorLink={"blue"}
                             fontSizeLink={"12px"}
                             fontWeightLink={"700"}
@@ -161,92 +193,7 @@ function Index() {
                             WidgetBoxColor={"#dab6fc"}
                             icon={<ImportContactsIcon style={{ fontSize:"30px",color:"black"}} />}
                           />
-                                                    
-                          <WidgetDataIstatistics
-                            backgroundColor={"#F1F1F1"}                            
-                           
-                            title={"Sponsorlar"}
-                            colorTitle={"#344563"}
-                            fontSizeTitle={"16px"}
-                            fontWeightTitle={"700"}
-
-                            value={"450"}
-                            colorValue={"black"}
-                            fontSizeValue={"28px"}
-                            fontWeightValue={"400"}
-
-                            titleDescription={"Online Sayısı: "}
-                            colorDescription={"rgb(160, 160, 160)"}
-                            fontSizeDescription={"12px"}
-                            fontWeightDescription={"700"}
-
-                            titleDescriptionValue={"121"}
-                            colorDescriptionValue={"rgb(160, 160, 160)"}
-                            fontSizeDescriptionValue={"12px"}
-                            fontWeightDescriptionValue={"700"}
-
-                            LinkName={"Link Name"}
-                            LinkUrl={"/linkUrl"}
-                            colorLink={"blue"}
-                            fontSizeLink={"12px"}
-                            fontWeightLink={"700"}
-
-                            status={"positive"}
-                            titleDetailDescription={"1000"}
-                            fontSizeDetailDescription={"14px"}
-                            fontWeightDetailDescription={"400"}
-
-                            titleDetailContent={"Bu ay"}
-                            colorDetailContent={"#344563"}
-                            fontSizeDetailContent={"15px"}
-                            fontWeightDetailContent={"700"}
-
-                            WidgetBoxColor={"darkseagreen"}
-                            icon={<BlurCircularIcon style={{ fontSize:"35px",color:"black"}} />}
-                          />
-                                                    
-                          <WidgetDataIstatistics
-                            backgroundColor={"#F1F1F1"}                            
-                           
-                            title={"Toplam Yapılan Ders Saati"}
-                            colorTitle={"#344563"}
-                            fontSizeTitle={"12px"}
-                            fontWeightTitle={"700"}
-
-                            value={"922"}
-                            colorValue={"black"}
-                            fontSizeValue={"28px"}
-                            fontWeightValue={"400"}
-
-                            titleDescription={"Online Sayısı: "}
-                            colorDescription={"rgb(160, 160, 160)"}
-                            fontSizeDescription={"12px"}
-                            fontWeightDescription={"700"}
-
-                            titleDescriptionValue={"121"}
-                            colorDescriptionValue={"rgb(160, 160, 160)"}
-                            fontSizeDescriptionValue={"12px"}
-                            fontWeightDescriptionValue={"700"}
-
-                            LinkName={"Link Name"}
-                            LinkUrl={"/linkUrl"}
-                            colorLink={"blue"}
-                            fontSizeLink={"12px"}
-                            fontWeightLink={"700"}
-
-                            status={"positive"}
-                            titleDetailDescription={"20%"}
-                            fontSizeDetailDescription={"14px"}
-                            fontWeightDetailDescription={"400"}
-
-                            titleDetailContent={"Bu ay"}
-                            colorDetailContent={"#344563"}
-                            fontSizeDetailContent={"15px"}
-                            fontWeightDetailContent={"700"}
-
-                            WidgetBoxColor={"#d0e1fd"}
-                            icon={<AlarmIcon style={{ fontSize:"35px",color:"black"}} />}
-                          />
+                                    
                     </div>
                         
                   </div>
