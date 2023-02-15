@@ -18,8 +18,6 @@ import axios from "axios";
 Moment.locale(Moment.locale()); // Lokasyona göre Zaman alıyor
 
 
-
-
 /* Function */
 const deleteUser =(id:any) => {
     Swal.fire({
@@ -84,19 +82,9 @@ const deleteUser =(id:any) => {
     });
 }
 
-const vieweUser =(id:any) => {
- window.location.href="/survey/vote?id="+id;
-}
+const vieweUser =(id:any) => { window.location.href="/survey/vote?id="+id; }
 
-
-const editAnswer =(id:any) => {
-   window.location.href="/question?id="+id;
-}
-
-
-
-
-/* Html Veri Ekleme */
+const editAnswer =(id:any) => { window.location.href="/question?id="+id; }
 
 
 
@@ -119,8 +107,6 @@ function getTime (params:any) {
 
 
 
-
-
 export const Index =(props: any) => {
   //console.log("props:",props);
 
@@ -133,24 +119,36 @@ export const Index =(props: any) => {
   const [answer4, setAnswer4] = useState("");
 
   //! Api State
-  const [tableData, setTableData] = useState<any[]>([])
-  const [tableCount, setTableCount] = useState(0);
+  const [modalEdit, setModalEdit] = useState(false);
+  const [editToken, setEditToken] = useState<any[]>([])
+ 
    
   //! Verileri Kayıt Etme
   const addData = () => {
     
-     console.log("Veri Ekleme");
-
     if (questionState == "") {  alert("Soru Eksik"); }
     else if (answer1 == "") {  alert("En az bir cevap yazılmalıdır"); }
      else {
 
-        const answers = {
-            answer1:answer1 == '' ? null : answer1,
-            answer2:answer2 == '' ? null : answer2,
-            answer3:answer3 == '' ? null : answer3,
-            answer4:answer4 == '' ? null : answer4
-        }
+        const answers = [
+          {
+            id:1,
+            title: answer1 == '' ? null : answer1
+          },
+          {
+            id:2,
+            title: answer2 == '' ? null : answer2
+          },
+          {
+            id:3,
+            title: answer3 == '' ? null : answer3
+          },
+          {
+            id:4,
+            title: answer4 == '' ? null : answer4
+          }
+        ]
+          
 
         const apiUrl_table=process.env.REACT_APP_API_URL+"/api/survey/add";
         console.log("apiUrl_table:",apiUrl_table);
@@ -163,7 +161,8 @@ export const Index =(props: any) => {
             answers: answers,
             created_byToken:"created_byToken"
           }
-     
+          
+          console.log("NewData:",NewData);
 
           axios.post(apiUrl_table,NewData)
             .then(response => {
@@ -212,6 +211,7 @@ export const Index =(props: any) => {
 
   }
 
+  //! Data display
   const editData = (id:any) => {
 
     
@@ -223,21 +223,141 @@ export const Index =(props: any) => {
 
         //! State
         
-        setTableData(response.data.DB);
-        setTableCount(response.data.size);
-    
-
+        setEditToken(response.data.DB.token);
+       
         console.log("Data:",response.data);
       
-        
-        setSuccess(response.data.status); //! Başarılı
+        //! Edit Modal Open
+        if(response.data.status == 1) {  
+
+          setModalEdit(true); //! Open
+          
+          //! saves data in state
+          setQuestionState(response.data.DB.question);
+          setAnswer1(response.data.DB.answers[0]?.title);
+          // setAnswer2(response.data.DB.answers[1]?.title);
+          // setAnswer3(response.data.DB.answers[2]?.title );
+          // setAnswer4(response.data.DB.answers[3]?.title);
+
+          console.log("answers",response.data.DB.answers);
+          console.log("answer3",response.data.DB.answers[0]?.title);
+          
+        }
+        else {
+          
+          Swal.fire({
+            position: 'center',
+            icon: 'error',
+            title: 'Veri Hatası',
+            showConfirmButton: false,
+            timer: 2000
+          });
+
+        }
 
         
           
       })
-      .catch(error => {  console.log("Api Error:",error.message); });
+      .catch(error => {  console.log("Api Error:",error.message); 
+    
+        
+        Swal.fire({
+          position: 'center',
+          icon: 'error',
+          title: 'İşleminiz Hatalı',
+          showConfirmButton: false,
+          timer: 2000
+        });
+      });
 
   }
+     
+  //! Verileri Kayıt Etme
+  const editPostData = () => {
+    
+   if (questionState == "") {  alert("Soru Eksik"); }
+   else if (answer1 == "") {  alert("En az bir cevap yazılmalıdır"); }
+   else {
+
+        const answers = [
+          {
+            id:1,
+            title: answer1 == '' ? null : answer1
+          },
+          {
+            id:2,
+            title: answer2 == '' ? null : answer2
+          },
+          {
+            id:3,
+            title: answer3 == '' ? null : answer3
+          },
+          {
+            id:4,
+            title: answer4 == '' ? null : answer4
+          }
+        ]
+        
+       const apiUrl_table=process.env.REACT_APP_API_URL+"/api/survey/update";
+       console.log("apiUrl_table:",apiUrl_table);
+       
+         //Eklenen Veriler
+         const NewData={
+           serverToken:"yildirimdev",
+           token:editToken,
+           question:questionState,
+           answers: answers,
+           updated_byToken:"updated_byToken"
+         }
+    
+         console.log("NewData:",NewData);
+
+         axios.post(apiUrl_table,NewData)
+           .then(response => {
+           
+           //! State
+           setSuccess(response.data.status); //! Durum
+           
+           //! console
+           console.log("Data:", response.data);
+             
+             
+             if (response.data.status == 1) {
+             
+               Swal.fire({
+                 position: 'center',
+                 icon: 'success',
+                 title: 'İşleminiz Başarılı',
+                 showConfirmButton: false,
+                 timer: 2000
+               });
+               
+                setModalEdit(false); //! Close
+                props.apiGet();
+
+               //! window.location.href ="/survey"; //! Sayfa Yönledirme
+             }
+           
+             else if (response.data.status == 0) {
+             
+               Swal.fire({
+                 position: 'center',
+                 icon: 'error',
+                 title: 'İşleminiz Hatalı',
+                 showConfirmButton: false,
+                 timer: 2000
+               });
+               
+             
+             }
+           
+             
+         })
+         .catch(error => {  console.log("Api Error:",error.message); });
+
+   }
+
+ }
 
   
 //! Actions Kullanma
@@ -348,6 +468,80 @@ function getActions(params:any) {
                   
                   
                   <Button variant="outlined" color="primary" style={{ marginTop:"40px",backgroundColor:"cadetblue", color:"white" }} onClick={()=>{   addData(); }} > Kaydet</Button>
+
+                  <hr />
+                    
+
+                </form>
+               </DialogContent>
+             </Dialog>
+
+             
+             <Dialog open={modalEdit} >
+               <DialogTitle style={{ display:"flex", justifyContent:"center", width:"600px"}} >
+                <div style={{display:"flex", justifyContent:"space-between", width:"500px"}} >
+                  <p>Anket Güncelle</p>
+                  <ClearIcon onClick={()=>{setModalEdit(false);}}  style={{cursor:"pointer",color:"red",border:"1px solid"}}  />
+                </div>
+               </DialogTitle>
+               <hr/>
+               <DialogContent>
+               <form  >
+                  <div className="form-group">
+                          <label htmlFor="question"> Soru </label>
+                          <input type="text"  className="form-control"
+                          name="question"  placeholder="Anket Sorusunu Yazınız.."
+                          value={questionState} onChange={(e)=>{ setQuestionState(e.target.value); }} />                       
+                  </div>
+
+                  <div className="form-group">
+                      <div style={{ marginTop:"10px",  display:"flex", gap:"10px" }}>
+                        <PanToolIcon style={{fontSize:"30px", color:"red"}} />
+                        <p style={{ marginTop:"auto", marginBottom:"auto" }}>Dikkat: Yazılan Cevap Kadar Gösterir </p>
+                      </div>
+                  </div>
+
+                  <hr />
+
+                  <div className="form-group">
+                          <label htmlFor="answer1"> Cevap 1 </label>
+                          <input type="text"  className="form-control"
+                          name="answer1"  placeholder="Cevap .."
+                          value={answer1} onChange={(e)=>{ setAnswer1(e.target.value);  }} />                       
+                  </div>
+
+                  <hr />
+
+                  <div className="form-group">
+                          <label htmlFor="answer2"> Cevap 2 </label>
+                          <input type="text"  className="form-control"
+                          name="answer2"  placeholder="Cevap .."
+                          value={answer2} onChange={(e)=>{ setAnswer2(e.target.value);  }} />                       
+                  </div>
+
+                  <hr />
+                  
+
+                  <div className="form-group">
+                          <label htmlFor="answer3"> Cevap 3 </label>
+                          <input type="text"  className="form-control"
+                          name="answer3"  placeholder="Cevap .."
+                          value={answer3} onChange={(e)=>{ setAnswer3(e.target.value);  }} />                       
+                  </div>
+
+                  <hr />
+
+                  <div className="form-group">
+                          <label htmlFor="answer4"> Cevap 4 </label>
+                          <input type="text"  className="form-control"
+                          name="answer4"  placeholder="Cevap .."
+                          value={answer4} onChange={(e)=>{ setAnswer4(e.target.value);  }} />                       
+                  </div>
+
+                  <hr />
+                  
+                  
+                  <Button variant="outlined" color="primary" style={{ marginTop:"40px",backgroundColor:"cadetblue", color:"white" }} onClick={()=>{   editPostData(); }} > Güncelle</Button>
 
                   <hr />
                     
