@@ -6,6 +6,8 @@ import WidgetToggleButton from "../../components/widgetToggleButton";
 
 import WidgetFileCard from "../../components/widgetFileCard";
 import WidgetFileTimeLine from "../../components/widgetFileTimeLine";
+
+import WidgetSurveyVote from "../../components/widgetSurveyVote";
 import "./index.css"
 
 //! icon
@@ -111,6 +113,51 @@ function Index() {
                                             
                             value={"71"}
                             maxValue={"80"}
+                          />
+                        </div>
+                    </div>
+
+                    <div style={{ marginTop:"20px" }}>
+                        <h1> Widget: widgetSurveyVote </h1>
+                        <div style={{ width:"300px" }}> 
+                          <WidgetSurveyVote
+                            backgroundColor={"#F1F1F1"}
+            
+                            question1={"Soru1"}
+                            colorQuestion1={"#7E817C"}
+                            fontSizeQuestion1={"10px"}
+                            fontWeightQuestion1={"700"}
+                            valueQuestion1={"71"}
+                            maxValueQuestion1={"80"}
+
+                            
+                            question2={"Soru2"}
+                            colorQuestion2={"#7E817C"}
+                            fontSizeQuestion2={"10px"}
+                            fontWeightQuestion2={"700"}
+                            valueQuestion2={"40"}
+                            maxValueQuestion2={"80"}
+
+                            question3={"Soru3"}
+                            colorQuestion3={"#7E817C"}
+                            fontSizeQuestion3={"10px"}
+                            fontWeightQuestion3={"700"}
+                            valueQuestion3={"40"}
+                            maxValueQuestion3={"80"}
+
+                            question4={"Soru4"}
+                            colorQuestion4={"#7E817C"}
+                            fontSizeQuestion4={"10px"}
+                            fontWeightQuestion4={"700"}
+                            valueQuestion4={"40"}
+                            maxValueQuestion4={"80"}
+
+                           
+                            
+                            colorValue={"#344563"}
+                            fontSizeValue={"15px"}
+                            fontWeightValue={"900"}
+                          
                           />
                         </div>
                     </div>
