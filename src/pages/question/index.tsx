@@ -108,7 +108,7 @@ function Index() {
                .then(response => {
                     
                     //! State
-                    setSuccess(response.data.status); //! Durum
+                    //setSuccess(response.data.status); //! Durum
                     
                     //! console
                     console.log("Data:", response.data);

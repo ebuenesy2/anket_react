@@ -122,7 +122,9 @@ function Index() {
                               {success === 1 ?
                                 <TableSurveyVote data={tableData} pageSize="10" modalOpen={modalOpen} setModalOpen={setModalOpen}  apiGet={apiGet} />
                                 :
-                                <p>Veri Bekleniyor</p>
+                                <div style={{ border:"1px solid", padding:"10px",  marginTop:"50px" }}>
+                                    Veri Bekliyor
+                                </div>
                               }
            
             

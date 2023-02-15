@@ -11,9 +11,6 @@ import PanToolIcon from '@material-ui/icons/PanTool';
 
 //! Date
 import Moment from 'moment'; //! Date
-import { Button, Dialog, DialogContent, DialogTitle } from "@material-ui/core";
-import { useState } from "react";
-import axios from "axios";
 Moment.locale(Moment.locale()); // Lokasyona göre Zaman alıyor
 
 
@@ -25,7 +22,7 @@ function getAnswerTitle(params:any) {
 
 //! Div Kullanma
 function getUserId(params:any) {
-  return <div style={{ display:"flex", gap:"5px" }}> <a> {params.row.voterInfo.id} </a>  </div>;
+  return <div style={{ display:"flex", gap:"5px" }}> <a> {params.row.voterId} </a>  </div>;
 }
 
 
