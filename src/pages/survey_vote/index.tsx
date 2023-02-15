@@ -21,6 +21,19 @@ function Index() {
        const [tableData, setTableData] = useState<any[]>([])
        const [tableCount, setTableCount] = useState(0);
        const [tableVoteCount, setTableVoteCount] = useState(0);
+
+       const [answer1, setAnswer1] = useState(null);
+       const [answer1Count, setAnswer1Count] = useState(0);
+
+       const [answer2, setAnswer2] = useState(null);
+       const [answer2Count, setAnswer2Count] = useState(0);
+
+       const [answer3, setAnswer3] = useState(null);
+       const [answer3Count, setAnswer3Count] = useState(0);
+
+
+       const [answer4, setAnswer4] = useState(null);
+       const [answer4Count, setAnswer4Count] = useState(0);
      
      
        useEffect(() => { apiGet(); }, []);
@@ -46,14 +59,23 @@ function Index() {
              
              setTableData(response.data.DB);
              setTableCount(response.data.size);
-             setTableVoteCount(response.data.voteCount);
+             setTableVoteCount(response.data.answersCount);
+
+             setAnswer1(response.data.answers[0].title);
+             setAnswer1Count(response.data.answers[0].count);
+
+             setAnswer2(response.data.answers[1].title);
+             setAnswer2Count(response.data.answers[1].count);
+
+             setAnswer3(response.data.answers[2].title);
+             setAnswer3Count(response.data.answers[2].count);
+
+             setAnswer4(response.data.answers[3].title);
+             setAnswer4Count(response.data.answers[3].count);
 
              console.log("Data:",response.data);
-            
-             
+        
              setSuccess(response.data.status); //! Başarılı
-
-             
                
            })
            .catch(error => {  console.log("Api Error:",error.message); });
@@ -119,34 +141,35 @@ function Index() {
                                 <WidgetSurveyVote
                                   backgroundColor={"#F1F1F1"}
                   
-                                  question1={"Soru1"}
+                                  
+                                  question1={answer1}
                                   colorQuestion1={"#7E817C"}
                                   fontSizeQuestion1={"10px"}
                                   fontWeightQuestion1={"700"}
-                                  valueQuestion1={"71"}
-                                  maxValueQuestion1={"80"}
+                                  valueQuestion1={answer1Count}
+                                  maxValueQuestion1={tableVoteCount}
 
                                   
-                                  question2={"Soru2"}
+                                  question2={answer2}
                                   colorQuestion2={"#7E817C"}
                                   fontSizeQuestion2={"10px"}
                                   fontWeightQuestion2={"700"}
-                                  valueQuestion2={"40"}
-                                  maxValueQuestion2={"80"}
+                                  valueQuestion2={answer2Count}
+                                  maxValueQuestion2={tableVoteCount}
 
-                                  question3={"Soru3"}
+                                  question3={answer3}
                                   colorQuestion3={"#7E817C"}
                                   fontSizeQuestion3={"10px"}
                                   fontWeightQuestion3={"700"}
-                                  valueQuestion3={"40"}
-                                  maxValueQuestion3={"80"}
+                                  valueQuestion3={answer3Count}
+                                  maxValueQuestion3={tableVoteCount}
 
-                                  question4={"Soru4"}
+                                  question4={answer4}
                                   colorQuestion4={"#7E817C"}
                                   fontSizeQuestion4={"10px"}
                                   fontWeightQuestion4={"700"}
-                                  valueQuestion4={"40"}
-                                  maxValueQuestion4={"80"}
+                                  valueQuestion4={answer4Count}
+                                  maxValueQuestion4={tableVoteCount}
 
                                 
                                   
