@@ -21,8 +21,66 @@ Moment.locale(Moment.locale()); // Lokasyona göre Zaman alıyor
 
 /* Function */
 const deleteUser =(id:any) => {
-    alert(id);
-    alert("delete");
+    Swal.fire({
+        title: 'Emin misiniz?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        confirmButtonText: 'Evet Sil',
+        cancelButtonColor: '#d33',
+        cancelButtonText: 'Hayır'
+    }).then((result) => {
+        if (result.isConfirmed) {
+           
+            const apiUrl_table=process.env.REACT_APP_API_URL+"/api/survey/delete/"+id;
+            console.log("apiUrl_table:",apiUrl_table);
+
+            //! Data to be posted
+            const NewData = {
+                 serverToken:"yildirimdev",
+                 deleted_byToken: localStorage.getItem('userToken')
+            }; //! Data to be posted
+
+
+            console.log("NewData:",NewData);
+
+            
+            axios.post(apiUrl_table,NewData)
+            .then(response => {
+                 
+                
+                 //! console
+                 console.log("Data:", response.data);
+                 
+                 
+                 if (response.data.status == 1) {
+                 
+                      Swal.fire({
+                           position: 'center',
+                           icon: 'success',
+                           title: 'İşleminiz Başarılı',
+                           showConfirmButton: false,
+                           timer: 2000
+                      });
+
+                      window.location.reload();
+                 }
+                 
+                 else if (response.data.status == 0) {
+                 
+                      Swal.fire({
+                           position: 'center',
+                           icon: 'error',
+                           title: 'İşleminiz Hatalı',
+                           showConfirmButton: false,
+                           timer: 2000
+                      });
+                 }
+                 
+            })
+        }
+    });
 }
 
 const vieweUser =(id:any) => {

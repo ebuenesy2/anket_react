@@ -1,12 +1,6 @@
 import "./index.css";
 import { DataGrid, GridToolbarExport, GridToolbarContainer } from '@material-ui/data-grid';
 
-//! icons
-import DeleteIcon from '@material-ui/icons/Delete';
-import VisibilityIcon from '@material-ui/icons/Visibility';
-import EditIcon from '@material-ui/icons/Edit';
-import ClearIcon from '@material-ui/icons/Clear';
-import PanToolIcon from '@material-ui/icons/PanTool';
 
 
 //! Date
