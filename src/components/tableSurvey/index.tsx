@@ -19,6 +19,7 @@ Moment.locale(Moment.locale()); // Lokasyona göre Zaman alıyor
 
 
 
+
 /* Function */
 const deleteUser =(id:any) => {
     Swal.fire({
@@ -87,10 +88,6 @@ const vieweUser =(id:any) => {
  window.location.href="/survey/vote?id="+id;
 }
 
-const editUser =(id:any) => {
-  alert(id);
-  alert("editUser");
-}
 
 const editAnswer =(id:any) => {
    window.location.href="/question?id="+id;
@@ -101,41 +98,7 @@ const editAnswer =(id:any) => {
 
 /* Html Veri Ekleme */
 
-//! Birleştirmw
-function getFullName(params:any) {
-  return `${params.row.firstName || ''} ${params.row.lastName || ''}`;
-}
 
- //! Link
-function getLink(params:any) { 
-  return <a href={`${params.row.link}`}>Link</a>;
-}
-
-//! Yazı
-function getText(params:any) { 
-  return <a> {params.row.category} </a>;
-}
-
-//! Resim
-function getImage(params:any) {
-  return <img  style={{ width: "50px", height:"50px", borderRadius:"50%" }} src={params.row.image} />;
-}
-
-//! Div Kullanma
-function getDiv(params:any) {
-  return <div style={{ display:"flex", gap:"5px" }}> <a> {params.row.firstName} </a> <a> {params.row.lastName} </a> </div>;
-}
-
-//! Actions Kullanma
-function getActions(params:any) {
-  return <div style={{ display:"flex", gap:"5px",cursor:"pointer" }}>
-     <div style={{ color:"red" }} onClick={()=> { deleteUser( params.row.id) }} >   <DeleteIcon />  </div>
-     <div style={{ color:"blue" }} onClick={()=> { vieweUser( params.row.id) }} >   <VisibilityIcon />  </div>
-     <div style={{ color:"black" }} onClick={()=> { editUser( params.row.id) }} >   <EditIcon />  </div>
-     <div style={{ color:"green" }} onClick={()=> { editAnswer( params.row.id) }} >   <QuestionAnswerIcon />  </div>
-   
-  </div>;
-}
 
 //! Div Kullanma
 function getQuestion(params:any) {
@@ -156,25 +119,7 @@ function getTime (params:any) {
 
 
 
-/* Html Veri Ekleme */
 
-const columns = [
-  { field: 'id', headerName: 'ID', width: 180 },
-  { field: 'actions', headerName: 'Actions', width: 150,  renderCell:getActions, editable: false},
-  { field: 'questions', headerName: 'Soru', width: 150,  renderCell:getQuestion,  editable: false},
-  { field: 'vote', headerName: 'Oylama Sayısı', width: 200,  renderCell:getVote,  editable: false},
-
-  { field: 'created_at', headerName: 'Oluşturduğu Zaman', width: 250, renderCell:getTime, editable: false}
-];
-
-
-//! Export
-function MyExportButton() {
-  return (<GridToolbarContainer style={{justifyContent: 'flex-end'}}>
-           <GridToolbarExport csvOptions={{ allColumns: true }} value="deneme" />
-           </GridToolbarContainer>
-         );
-}
 
 export const Index =(props: any) => {
   //console.log("props:",props);
@@ -186,6 +131,10 @@ export const Index =(props: any) => {
   const [answer2, setAnswer2] = useState("");
   const [answer3, setAnswer3] = useState("");
   const [answer4, setAnswer4] = useState("");
+
+  //! Api State
+  const [tableData, setTableData] = useState<any[]>([])
+  const [tableCount, setTableCount] = useState(0);
    
   //! Verileri Kayıt Etme
   const addData = () => {
@@ -261,6 +210,63 @@ export const Index =(props: any) => {
 
     }
 
+  }
+
+  const editData = (id:any) => {
+
+    
+    const apiUrl_table=process.env.REACT_APP_API_URL+"/api/survey/"+id;
+    console.log("apiUrl_table:",apiUrl_table);
+    
+    axios.get(apiUrl_table)
+      .then(response => {
+
+        //! State
+        
+        setTableData(response.data.DB);
+        setTableCount(response.data.size);
+    
+
+        console.log("Data:",response.data);
+      
+        
+        setSuccess(response.data.status); //! Başarılı
+
+        
+          
+      })
+      .catch(error => {  console.log("Api Error:",error.message); });
+
+  }
+
+  
+//! Actions Kullanma
+function getActions(params:any) {
+  return <div style={{ display:"flex", gap:"5px",cursor:"pointer" }}>
+     <div style={{ color:"red" }} onClick={()=> { deleteUser( params.row.id) }} >   <DeleteIcon />  </div>
+     <div style={{ color:"blue" }} onClick={()=> { vieweUser( params.row.id) }} >   <VisibilityIcon />  </div>
+     <div style={{ color:"black" }} onClick={()=> { editData( params.row.id) }} >   <EditIcon />  </div>
+     <div style={{ color:"green" }} onClick={()=> { editAnswer( params.row.id) }} >   <QuestionAnswerIcon />  </div>
+   
+  </div>;
+}
+
+  const columns = [
+    { field: 'id', headerName: 'ID', width: 180 },
+    { field: 'actions', headerName: 'Actions', width: 150,  renderCell:getActions, editable: false},
+    { field: 'questions', headerName: 'Soru', width: 150,  renderCell:getQuestion,  editable: false},
+    { field: 'vote', headerName: 'Oylama Sayısı', width: 200,  renderCell:getVote,  editable: false},
+  
+    { field: 'created_at', headerName: 'Oluşturduğu Zaman', width: 250, renderCell:getTime, editable: false}
+  ];
+  
+  
+  //! Export
+  function MyExportButton() {
+    return (<GridToolbarContainer style={{justifyContent: 'flex-end'}}>
+             <GridToolbarExport csvOptions={{ allColumns: true }} value="deneme" />
+             </GridToolbarContainer>
+           );
   }
 
   return (
@@ -356,4 +362,6 @@ export const Index =(props: any) => {
 }
 
 export default Index;
+
+
 
