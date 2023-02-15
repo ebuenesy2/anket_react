@@ -9,6 +9,7 @@ import TableSurveyVote from '../../components/tableSurveyVote';
 
 //! İcon
 import QuestionAnswerIcon from '@material-ui/icons/QuestionAnswer';
+import WidgetSurveyVote from "../../components/widgetSurveyVote";
 
 
 function Index() {
@@ -73,46 +74,87 @@ function Index() {
                     <div className="usersContainer">
                             <div className="Widgets"> 
                                                      
-                    <div style={{ width:"450px", display:"flex", gap:"10px" }}>
-                          <WidgetDataIstatistics
-                            backgroundColor={"#F1F1F1"}                            
-                           
-                            title={"Anket Oy Sayısı"}
-                            colorTitle={"#344563"}
-                            fontSizeTitle={"16px"}
-                            fontWeightTitle={"700"}
+                              <div style={{ width:"450px", display:"flex", gap:"10px" }}>
+                                    <WidgetDataIstatistics
+                                      backgroundColor={"#F1F1F1"}                            
+                                    
+                                      title={"Anket Oy Sayısı"}
+                                      colorTitle={"#344563"}
+                                      fontSizeTitle={"16px"}
+                                      fontWeightTitle={"700"}
 
-                            value={tableCount}
-                            colorValue={"black"}
-                            fontSizeValue={"28px"}
-                            fontWeightValue={"400"}
+                                      value={tableCount}
+                                      colorValue={"black"}
+                                      fontSizeValue={"28px"}
+                                      fontWeightValue={"400"}
 
-                            titleDescription={"Oylanan Anket Sayısı: "}
-                            colorDescription={"rgb(160, 160, 160)"}
-                            fontSizeDescription={"12px"}
-                            fontWeightDescription={"700"}
+                                      titleDescription={"Oylanan Anket Sayısı: "}
+                                      colorDescription={"rgb(160, 160, 160)"}
+                                      fontSizeDescription={"12px"}
+                                      fontWeightDescription={"700"}
 
-                            titleDescriptionValue={tableVoteCount}
-                            colorDescriptionValue={"rgb(160, 160, 160)"}
-                            fontSizeDescriptionValue={"12px"}
-                            fontWeightDescriptionValue={"700"}
+                                      titleDescriptionValue={tableVoteCount}
+                                      colorDescriptionValue={"rgb(160, 160, 160)"}
+                                      fontSizeDescriptionValue={"12px"}
+                                      fontWeightDescriptionValue={"700"}
 
-                           
+                                    
 
-                            status={"positive"}
-                            titleDetailDescription={"xx%"}
-                            fontSizeDetailDescription={"14px"}
-                            fontWeightDetailDescription={"400"}
+                                      status={"positive"}
+                                      titleDetailDescription={"xx%"}
+                                      fontSizeDetailDescription={"14px"}
+                                      fontWeightDetailDescription={"400"}
 
-                            titleDetailContent={"Bu ay"}
-                            colorDetailContent={"#344563"}
-                            fontSizeDetailContent={"15px"}
-                            fontWeightDetailContent={"700"}
+                                      titleDetailContent={"Bu ay"}
+                                      colorDetailContent={"#344563"}
+                                      fontSizeDetailContent={"15px"}
+                                      fontWeightDetailContent={"700"}
 
-                            WidgetBoxColor={"#FEDDC7"}
-                            icon={<QuestionAnswerIcon style={{ fontSize:"35px",color:"black"}} />}
-                          />
-                    </div>
+                                      WidgetBoxColor={"#FEDDC7"}
+                                      icon={<QuestionAnswerIcon style={{ fontSize:"35px",color:"black"}} />}
+                                    />
+                              </div>
+
+                              <div style={{ width:"300px" }}> 
+                                <WidgetSurveyVote
+                                  backgroundColor={"#F1F1F1"}
+                  
+                                  question1={"Soru1"}
+                                  colorQuestion1={"#7E817C"}
+                                  fontSizeQuestion1={"10px"}
+                                  fontWeightQuestion1={"700"}
+                                  valueQuestion1={"71"}
+                                  maxValueQuestion1={"80"}
+
+                                  
+                                  question2={"Soru2"}
+                                  colorQuestion2={"#7E817C"}
+                                  fontSizeQuestion2={"10px"}
+                                  fontWeightQuestion2={"700"}
+                                  valueQuestion2={"40"}
+                                  maxValueQuestion2={"80"}
+
+                                  question3={"Soru3"}
+                                  colorQuestion3={"#7E817C"}
+                                  fontSizeQuestion3={"10px"}
+                                  fontWeightQuestion3={"700"}
+                                  valueQuestion3={"40"}
+                                  maxValueQuestion3={"80"}
+
+                                  question4={"Soru4"}
+                                  colorQuestion4={"#7E817C"}
+                                  fontSizeQuestion4={"10px"}
+                                  fontWeightQuestion4={"700"}
+                                  valueQuestion4={"40"}
+                                  maxValueQuestion4={"80"}
+
+                                
+                                  
+                                  colorValue={"#344563"}
+                                  fontSizeValue={"15px"}
+                                  fontWeightValue={"600"}
+                                />
+                              </div>
                             </div>
 
                             <div className="listContainer"> 

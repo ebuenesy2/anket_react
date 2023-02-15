@@ -41,7 +41,7 @@ export const Index =(props: any) => {  //console.log("proops:",props);
                 <div className="widgetFileCardBottomLeft">
                     <div className="widgetFileCardBottomLeftTitle"  style={{ color: props.colorQuestion1 ? props.colorQuestion1 : "black", fontSize: props.fontSizeQuestion1 ? props.fontSizeQuestion1 : "16px", fontWeight: props.fontWeightQuestion1 ? props.fontWeightQuestion1 : "700"  }} >{props.question1 ? props.question1 : "Soru1"} </div>   
                 </div>
-                <div className="widgetFileCardBottomRight" style={{ color: props.colorValue ? props.colorValue : "black", fontSize: props.fontSizeValue ? props.fontSizeValue : "16px", fontWeight:props.fontWeightValue ? props.fontWeightValue : "700"  }} > {((props.valueQuestion1/props.maxValueQuestion1)*100).toFixed(2)} %  </div>
+                <div className="widgetFileCardBottomRight" style={{ color: props.colorValue ? props.colorValue : "black", fontSize: props.fontSizeValue ? props.fontSizeValue : "16px", fontWeight:props.fontWeightValue ? props.fontWeightValue : "700"  }} > ( { props.valueQuestion1 }/ { props.maxValueQuestion1} )  -  {((props.valueQuestion1/props.maxValueQuestion1)*100).toFixed(2)} %  </div>
                   
               </div>
               <div className="ProgressBarValueBackColor"  ><span style={{
@@ -59,7 +59,7 @@ export const Index =(props: any) => {  //console.log("proops:",props);
                 <div className="widgetFileCardBottomLeft">
                     <div className="widgetFileCardBottomLeftTitle"  style={{ color: props.colorQuestion2 ? props.colorQuestion2 : "black", fontSize: props.fontSizeQuestion2 ? props.fontSizeQuestion2 : "16px", fontWeight: props.fontWeightQuestion2 ? props.fontWeightQuestion2 : "700"  }} >{props.question2 ? props.question2 : "Soru1"} </div>   
                 </div>
-                <div className="widgetFileCardBottomRight" style={{ color: props.colorValue ? props.colorValue : "black", fontSize: props.fontSizeValue ? props.fontSizeValue : "16px", fontWeight:props.fontWeightValue ? props.fontWeightValue : "700"  }} > {((props.valueQuestion2/props.maxValueQuestion2)*100).toFixed(2)} %  </div>
+                <div className="widgetFileCardBottomRight" style={{ color: props.colorValue ? props.colorValue : "black", fontSize: props.fontSizeValue ? props.fontSizeValue : "16px", fontWeight:props.fontWeightValue ? props.fontWeightValue : "700"  }} > ( { props.valueQuestion2 }/ { props.maxValueQuestion2} )  -  {((props.valueQuestion2/props.maxValueQuestion2)*100).toFixed(2)} %  </div>
                   
               </div>
               <div className="ProgressBarValueBackColor" style={{display : props.question2 ? "flex" : "none" }} ><span style={{
@@ -80,7 +80,7 @@ export const Index =(props: any) => {  //console.log("proops:",props);
                 <div className="widgetFileCardBottomLeft">
                     <div className="widgetFileCardBottomLeftTitle"  style={{ color: props.colorQuestion3 ? props.colorQuestion3 : "black", fontSize: props.fontSizeQuestion3 ? props.fontSizeQuestion3 : "16px", fontWeight: props.fontWeightQuestion3 ? props.fontWeightQuestion3 : "700"  }} >{props.question3 ? props.question3 : "Soru1"} </div>   
                 </div>
-                <div className="widgetFileCardBottomRight" style={{ color: props.colorValue ? props.colorValue : "black", fontSize: props.fontSizeValue ? props.fontSizeValue : "16px", fontWeight:props.fontWeightValue ? props.fontWeightValue : "700"  }} > {((props.valueQuestion3/props.maxValueQuestion3)*100).toFixed(2)} %  </div>
+                <div className="widgetFileCardBottomRight" style={{ color: props.colorValue ? props.colorValue : "black", fontSize: props.fontSizeValue ? props.fontSizeValue : "16px", fontWeight:props.fontWeightValue ? props.fontWeightValue : "700"  }} > ( { props.valueQuestion3 }/ { props.maxValueQuestion3} )  -  {((props.valueQuestion3/props.maxValueQuestion3)*100).toFixed(2)} %  </div>
                   
               </div>
               <div className="ProgressBarValueBackColor" style={{display : props.question3 ? "flex" : "none" }}  ><span style={{
@@ -98,7 +98,7 @@ export const Index =(props: any) => {  //console.log("proops:",props);
                 <div className="widgetFileCardBottomLeft">
                     <div className="widgetFileCardBottomLeftTitle"  style={{ color: props.colorQuestion4 ? props.colorQuestion4 : "black", fontSize: props.fontSizeQuestion4 ? props.fontSizeQuestion4 : "16px", fontWeight: props.fontWeightQuestion4 ? props.fontWeightQuestion4 : "700"  }} >{props.question4 ? props.question4 : "Soru1"} </div>   
                 </div>
-                <div className="widgetFileCardBottomRight" style={{ color: props.colorValue ? props.colorValue : "black", fontSize: props.fontSizeValue ? props.fontSizeValue : "16px", fontWeight:props.fontWeightValue ? props.fontWeightValue : "700"  }} > {((props.valueQuestion4/props.maxValueQuestion4)*100).toFixed(2)} %  </div>
+                <div className="widgetFileCardBottomRight" style={{ color: props.colorValue ? props.colorValue : "black", fontSize: props.fontSizeValue ? props.fontSizeValue : "16px", fontWeight:props.fontWeightValue ? props.fontWeightValue : "700"  }} > ( { props.valueQuestion4 }/ { props.maxValueQuestion4} )  -  {((props.valueQuestion4/props.maxValueQuestion4)*100).toFixed(2)} %  </div>
                   
               </div>
               <div className="ProgressBarValueBackColor" style={{display : props.question4 ? "flex" : "none" }}  ><span style={{
@@ -113,7 +113,7 @@ export const Index =(props: any) => {  //console.log("proops:",props);
               </div>  
           </div>
 
-        
+          
           
         </div>
       </div>
