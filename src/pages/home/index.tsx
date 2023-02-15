@@ -197,10 +197,7 @@ function Index() {
                     </div>
                         
                   </div>
-                  <div className="Charts"> 
-                      
-                        <Chart />
-                  </div>
+                
 
                
                   
